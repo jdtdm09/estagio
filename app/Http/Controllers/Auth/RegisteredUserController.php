@@ -32,14 +32,14 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'nTelemovel' => ['required', 'integer', 'max:9', 'unique'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'nTelemovel' => ['required', 'digits:9', 'unique:users'],
             'dataNascimento' => ['required', 'date'],
             'genero' => ['required', 'string'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'cargo' => ['required', 'boolean', 'default:0'],
         ]);
-
+        
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
