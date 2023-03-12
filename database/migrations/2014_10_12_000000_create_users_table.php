@@ -20,9 +20,9 @@ return new class extends Migration
             $table->date('dataNascimento');
             $table->string('genero');
             $table->string('password');
+            $table->boolean('cargo')->default(0);
             $table->rememberToken();
             $table->timestamps();
-            $table->boolean('cargo');
         });
     }
 

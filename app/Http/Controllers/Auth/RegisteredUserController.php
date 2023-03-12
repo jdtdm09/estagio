@@ -37,7 +37,7 @@ class RegisteredUserController extends Controller
             'dataNascimento' => ['required', 'date'],
             'genero' => ['required', 'string'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'cargo' => ['required', 'boolean', 'default:0'],
+            'cargo' => ['boolean', 'default:0'],
         ]);
         
         $user = User::create([
@@ -47,7 +47,7 @@ class RegisteredUserController extends Controller
             'dataNascimento' => $request->dataNascimento,
             'genero' => $request->genero,
             'password' => Hash::make($request->password),
-            'cargo' => $request->cargo,
+            'cargo' => $request->cargo ?? 0,
         ]);
 
         event(new Registered($user));
