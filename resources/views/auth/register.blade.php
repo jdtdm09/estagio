@@ -37,8 +37,8 @@
             <x-input-label for="genero" :value="__('Género')" />
             <select id="genero" name="genero" class="block w-full rounded-md border-gray-300 shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 <option value="">Selecione uma opção</option>
-                <option value="Feminino">Feminino</option>
-                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Masculino</option>
+                <option value="Masculino">Feminino</option>
                 <option value="Outro">Outro</option>
             </select>
             <x-input-error :messages="$errors->get('genero')" class="mt-2" />
