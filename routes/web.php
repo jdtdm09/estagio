@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +34,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
         return view('admin');
     });
 });
+
+Route::get('/users', function () {
+    $users = User::all();
+    return view('users', compact('users'));
+})->name('users');
 
 require __DIR__.'/auth.php';

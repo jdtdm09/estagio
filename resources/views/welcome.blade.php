@@ -33,7 +33,7 @@
 
             <div class="max-w-7xl mx-auto p-6 lg:p-8">
                 <div class="flex justify-center">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1792/1792670.png" height="250" width="250">
+                    <img src="https://www.outsport.pt/wp-content/uploads/2022/04/outsport-icon-eventos-corporativos-1024x1024.png" height="250" width="250">
                 </div>
 {{-- 
                 <div class="mt-16">
