@@ -4,14 +4,42 @@
             {{ __('Eventos') }}
         </h2>
     </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("Bem-Vindo") }}
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout>
+    <head>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    </head>
+        <h1 class="text-center my-4" style="font-size: 24px; margin-top: 20px;">Lista de Eventos </h1>
+        <br />
+        <table style="margin: 20px auto 0;">
+        <thead>
+            <style>
+                table, th, td {
+                    border: 1px solid black;
+                    border-collapse: collapse;
+                    padding: 10px;
+                    text-align: center;
+                }
+            </style>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Localização</th>
+                <th>Data e Hora</th>
+                <th>Número de Vagas</th>
+                <th>Vagas Disponíveis</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($events as $event)
+                <tr>
+                    <td>{{ $event->id }}</td>
+                    <td>{{ $event->nome }}</td>
+                    <td>{{ $event->localizacao }}</td>
+                    <td>{{ $event->data_hora }}</td>
+                    <td>{{ $event->numero_vagas }}</td>
+                    <td>{{ $event->vagas_disponiveis }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+    
+    </x-app-layout>
