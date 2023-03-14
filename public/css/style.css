@@ -1,0 +1,11 @@
+.underline-on-hover:hover {
+    text-decoration: underline;
+}
+
+.inlinediv {
+    display: inline-flex;
+}
+
+.textbonito {
+    margin-left: 15%;
+}

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 
@@ -32,12 +33,33 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', function () {
         return view('admin');
-    });
+    })->name('admin');
 });
 
-Route::get('/users', function () {
-    $users = User::all();
-    return view('users', compact('users'));
-})->name('users');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/users', function () {
+        $users = User::all();
+        return view('users', compact('users'));
+    })->name('users');
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/users/create', [UserController::class, 'create'])->name('userCreate');
+    Route::post('/users', [UserController::class, 'store'])->name('userStore');
+});
+
+
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('userEdit');
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('userUpdate');
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('userDelete');
+});
 
 require __DIR__.'/auth.php';
