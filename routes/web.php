@@ -47,8 +47,20 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/events', function () {
+        $events = event::all();
+        return view('events', compact('events'));
+    })->name('events');
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/users/create', [UserController::class, 'create'])->name('userCreate');
     Route::post('/users', [UserController::class, 'store'])->name('userStore');
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/events/create', [EventController::class, 'create'])->name('eventCreate');
+    Route::post('/events', [EventController::class, 'store'])->name('eventStore');
 });
 
 

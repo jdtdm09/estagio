@@ -20,7 +20,7 @@
                             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg w-full">
                                 <div class="px-6 py-4">
                                     <h3 class="text-gray-900 dark:text-gray-100 font-semibold mb-2">{{ __('Eventos') }}</h3>
-                                    <p class="text-gray-600 dark:text-gray-400">{{ __('Gerenciar eventos') }}</p>
+                                    <a href="{{ route('events') }}" class="text-gray-600 dark:text-gray-400 underline-on-hover">{{ __('Gerenciar eventos') }}</p>
                                 </div>
                             </div>
                             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg w-full">
