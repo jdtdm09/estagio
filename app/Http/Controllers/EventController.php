@@ -54,11 +54,11 @@ class EventController extends Controller
     return view('eventEdit', ['event' => $event]);
 }
 
-    public function update(Request $request, event $event)
+public function update(Request $request, Event $event)
 {
     $request->validate([
         'nome' => 'required|string|max:255',
-        'descricao' => 'required|max:800',
+        'descricao' => 'required|string|max:800',
         'localizacao' => 'required|string|max:255',
         'data_hora' => 'required|date',
         'numero_vagas' => 'required|integer',
@@ -66,10 +66,10 @@ class EventController extends Controller
     ]);
 
     $event->nome = $request->input('nome');
-    $event->descricao = $request->input('descricacao');
+    $event->descricao = $request->input('descricao');
     $event->localizacao = $request->input('localizacao');
     $event->data_hora = $request->input('data_hora');
-    $event->numero_vagas = $request->input('numroer_vagas');
+    $event->numero_vagas = $request->input('numero_vagas');
     $event->vagas_disponiveis = $request->input('vagas_disponiveis');
 
     $event->save();
