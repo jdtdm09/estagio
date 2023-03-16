@@ -63,10 +63,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/events', [EventController::class, 'store'])->name('eventStore');
 });
 
-
-
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('userEdit');
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/events/{id}/edit', [EventController::class, 'edit'])->name('eventEdit');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -74,7 +76,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
+    Route::put('/events/{event}', [EventController::class, 'update'])->name('eventUpdate');
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('userDelete');
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('eventDelete');
 });
 
 require __DIR__.'/auth.php';

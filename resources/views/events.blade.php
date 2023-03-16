@@ -33,6 +33,7 @@
             <th>Data e Hora</th>
             <th>Número de Vagas</th>
             <th>Vagas Disponíveis</th>
+            <th>Opcões</th>
         </tr>
     </thead>
     <tbody>
@@ -45,6 +46,11 @@
                 <td>{{ $event->data_hora }}</td>
                 <td>{{ $event->numero_vagas }}</td>
                 <td>{{ $event->vagas_disponiveis }}</td>
+                <td style="line-height: 20%;"> <div class="inlinediv" style="margin-top:13%"><a class="underline-on-hover" href="{{ route('eventEdit', ['id' => $event->id]) }}">Editar </a>&nbsp; / &nbsp;<form action="{{ route('eventDelete', ['id' => $event->id]) }}" method="POST" onsubmit="return confirm('Tem a certeza que deseja eliminar este evento?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="underline-on-hover inlinediv"> Eliminar</button>
+                </form></div></td>
             </tr>
         @endforeach
     </tbody>

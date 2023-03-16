@@ -54,37 +54,34 @@ class EventController extends Controller
     return view('eventEdit', ['event' => $event]);
 }
 
-//     public function update(Request $request, event $event)
-// {
-//     $request->validate([
-//         'name' => 'required|string|max:255',
-//         'email' => 'required|email|unique:users,email,'.$user->id,
-//         'nTelemovel' => 'required|string|max:255',
-//         'dataNascimento' => 'required|date',
-//         'genero' => 'required|string',
-//         'cargo' => 'nullable|boolean',
-//     ]);
+    public function update(Request $request, event $event)
+{
+    $request->validate([
+        'nome' => 'required|string|max:255',
+        'descricao' => 'required|max:800',
+        'localizacao' => 'required|string|max:255',
+        'data_hora' => 'required|date',
+        'numero_vagas' => 'required|integer',
+        'vagas_disponiveis' => 'required|integer',
+    ]);
 
-//     $user->name = $request->input('name');
-//     $user->email = $request->input('email');
-//     $user->nTelemovel = $request->input('nTelemovel');
-//     $user->dataNascimento = $request->input('dataNascimento');
-//     $user->genero = $request->input('genero');
-//     $user->cargo = $request->input('cargo');
+    $event->nome = $request->input('nome');
+    $event->descricao = $request->input('descricacao');
+    $event->localizacao = $request->input('localizacao');
+    $event->data_hora = $request->input('data_hora');
+    $event->numero_vagas = $request->input('numroer_vagas');
+    $event->vagas_disponiveis = $request->input('vagas_disponiveis');
 
-//     $user->save();
+    $event->save();
 
-//     return redirect()->route('users');
-// }
+    return redirect()->route('events');
+}
 
-//     public function destroy($id)
-// {
-//     $user = User::find($id);
-//     $user->delete();
+    public function destroy($id)
+{
+    $event = Event::find($id);
+    $event->delete();
 
-//     return redirect()->route('users');
-// }
-
-
-
+    return redirect()->route('events');
+}
 }
