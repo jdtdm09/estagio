@@ -24,12 +24,6 @@
         </div>
 
         <div>
-            <x-input-label for="name" value="Foto de Perfil" />
-            <x-text-input id="foto_de_perfil" name="foto_de_perfil" type="file" class="mt-1 block w-full" :value="old('foto_de_perfil', $user->foto_de_perfil)" required autofocus autocomplete="foto_de_perfil" />
-            <x-input-error class="mt-2" :messages="$errors->get('foto_de_perfil')" />
-        </div>
-
-        <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
