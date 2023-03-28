@@ -4,7 +4,7 @@
             Foto de Perfil
         </h2>
 
-        <img class="w-20 h-20 rounded-full" src="{{ "/storage/$user->avatar" }}" alt="user avatar" />
+        <img class="w-20 h-20n rounded-full" src="{{ "/storage/$user->avatar" }}" alt="user avatar" />
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
             Adiciona ou atualiza a tua Foto de Perfil.
