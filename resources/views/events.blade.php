@@ -304,6 +304,11 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Eventos</h6>
                         </div>
+                        <div style="text-align: right; margin-top: 18px;">
+                            <div style="display: block; width: 1200px;">
+                                <a href="{{ route('eventCreate') }}">Adicionar Evento</a>
+                            </div>
+                        </div> 
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

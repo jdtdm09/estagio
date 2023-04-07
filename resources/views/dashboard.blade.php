@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <script src="https://kit.fontawesome.com/bdbff2d269.js" crossorigin="anonymous"></script>
     <title>Eventos</title>
     
     <!-- Custom fonts for this template-->
