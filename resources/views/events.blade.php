@@ -8,7 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <script src="https://kit.fontawesome.com/bdbff2d269.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('bootstrap\js\bootstrap.bundle.min.js') }}"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
 
+    
     <title>Eventos - Gestão de Eventos</title>
 
     <!-- Custom fonts for this template -->

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +10,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <script src="https://kit.fontawesome.com/bdbff2d269.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/sb-admin-2.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('bootstrap\js\bootstrap.bundle.min.js') }}"></script>
+
     <title>Eventos</title>
     
     <!-- Custom fonts for this template-->
@@ -300,18 +307,17 @@
                     <div class="row">
 
                         <!-- Earnings (Monthly) Card Example -->
+                        @foreach ($events as $event)
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            @foreach ($events as $event)
                                             <div class="evento">
                                                 <h1 class="text-center my-4" style="font-size: 24px; margin-top: 20px;">{{ $event->nome }}</h1>
                                                 <div class="evento-info">
                                                 </div>
                                             </div>
-                                            @endforeach
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -320,7 +326,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        @endforeach
                         <div class="col-lg-6 mb-4">
                         </div>
                     </div>
@@ -372,11 +378,11 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="..\..\vendor\jquery\jquery.min.js"></script>
+    <script src="vendor\bootstrap\js\bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor\jquery-easing\jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
