@@ -58,6 +58,7 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
+            @if(Auth::check() && Auth::user()->cargo == 1)
             <div class="sidebar-heading">
                 Interface
             </div>
@@ -78,9 +79,10 @@
                     </div>
                 </div>
             </li>
-
+        
             <!-- Divider -->
             <hr class="sidebar-divider">
+            @endif
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
