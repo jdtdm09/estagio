@@ -15,9 +15,13 @@
     <script src="{{ asset('jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('bootstrap\js\bootstrap.bundle.min.js') }}"></script>
     
-    <script>
+     <script>
         $(document).ready(function () {
-            $('#example').DataTable();
+            $('#dataTable').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+                }
+            });
         });
     </script>
 
@@ -357,25 +361,17 @@
                                                     <td>{{ $event->data_hora }}</td>
                                                     <td>{{ $event->numero_vagas }}</td>
                                                     <td>{{ $event->vagas_disponiveis }}</td>
-                                                    <td style="line-height: 20%;">
-                                                        <div class="dropdown no-arrow">
-                                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fas fa-ellipsis-v fa-sm 
-                                                                    fa-fw text-gray-400"></i>
-                                                                    </a>
-                                                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                                                            <div class="dropdown-header">Opções:</div>
-                                                                            <a class="dropdown-item" href="{{ route('eventEdit', ['id' => $event->id]) }}">Editar</a>
-                                                                            <form action="{{ route('userDelete', ['id' => $event->id]) }}" method="POST" onsubmit="return confirm('Tem a certeza que deseja eliminar este evento?')">
-                                                                                @csrf
-                                                                                @method('DELETE')
-                                                                                <button type="submit" class="underline-on-hover inlinediv"> Eliminar</button>
-                                                                           </form>
-                                                                        </div>
-                                                                    </div>
+                                                    <td style="text-align: center;">
+                                                        <div style="display: flex; flex-direction: row; justify-content: center;">
+                                                            <a href="{{ route('eventEdit', ['id' => $event->id]) }}"><i class="fa-solid fa-pen" style="color: #6080eb;"></i></a>
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                                            <form action="{{ route('eventDelete', ['id' => $event->id]) }}" method="POST" onsubmit="return confirm('Tem a certeza que deseja eliminar este utilizador?')">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" style="border: none; background: none;"> <i class="fa-solid fa-trash" style="color: #c42727;"></i></button>
+                                                            </form>
                                                         </div>
-                                                      </td>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                     </tbody>
