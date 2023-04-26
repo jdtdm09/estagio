@@ -329,7 +329,7 @@
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                      aria-labelledby="dropdownMenuLink">
                                     <div class="dropdown-header">Opções:</div>
-                                    <a class="dropdown-item" href="{{ route('users') }}">Adicionar</a>
+                                    <a class="dropdown-item" href="{{ route('userCreate') }}">Adicionar</a>
                                 </div>
                             </div>
                         </div>          

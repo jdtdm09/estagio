@@ -37,12 +37,11 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Criar conta!</h1>
+                                        <h1 class="h4 text-gray-900">Criar conta!</h1>
                                     </div>
                                     <form method="POST" action="{{ route('register') }}" class="user">
                                         @csrf
 
-                                        <!-- Name -->
                                         <div class="form-group">
                                             <x-input-label for="name" />
                                             <x-text-input id="name" class="form-control form-control-user"
@@ -51,8 +50,6 @@
                                             <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                         </div>
 
-
-                                        <!-- Email Address -->
                                         <div class="form-group">
                                             <x-input-label for="email" />
                                             <x-text-input id="email" class="form-control form-control-user"
@@ -61,63 +58,58 @@
                                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                         </div>
 
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <x-input-label for="nTelemovel" />
+                                                <x-text-input id="nTelemovel" class="form-control form-control-user"
+                                                    type="text" name="nTelemovel" :value="old('nTelemovel')" required autofocus
+                                                    autocomplete="phone" placeholder="Número de Telemóvel" />
+                                                <x-input-error :messages="$errors->get('nTelemovel')" class="mt-2" />
+                                            </div>
 
-                                        <!-- Número de Telemóvel -->
-                                        <div class="form-group">
-                                            <x-input-label for="nTelemovel" />
-                                            <x-text-input id="nTelemovel" class="form-control form-control-user"
-                                                type="text" name="nTelemovel" :value="old('nTelemovel')" required autofocus
-                                                autocomplete="phone" placeholder="Número de Telemóvel" />
-                                            <x-input-error :messages="$errors->get('nTelemovel')" class="mt-2" />
+                                            <div class="col-sm-6">
+                                                <x-input-label for="dataNascimento" />
+                                                <x-date-input id="dataNascimento" class="form-control form-control-user"
+                                                    name="dataNascimento" :value="old('dataNascimento')" required autofocus
+                                                    placeholder="Data de Nascimento" />
+                                                <x-input-error :messages="$errors->get('dataNascimento')" class="mt-2" />  
+                                            </div>
                                         </div>
 
-
-                                         <!-- Data de Nascimento -->
                                         <div class="form-group">
-                                            <x-input-label for="dataNascimento" />
-                                            <x-date-input id="dataNascimento" class="form-control form-control-user"
-                                                name="dataNascimento" :value="old('dataNascimento')" required autofocus
-                                                placeholder="Data de Nascimento" />
-                                            <x-input-error :messages="$errors->get('dataNascimento')" class="mt-2" />
+                                            <x-input-label for="genero" />
+                                            <select id="genero" name="genero" class="form-control form-control-user"
+                                                required autofocus>
+                                                <option value="">Selecione uma opção</option>
+                                                <option value="Feminino">Masculino</option>
+                                                <option value="Masculino">Feminino</option>
+                                                <option value="Outro">Outro</option>
+                                            </select>
+                                            <x-input-error :messages="$errors->get('genero')" class="mt-2" />
                                         </div>
 
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <x-input-label for="password" />
+                                                <x-password-input id="password" class="form-control form-control-user"
+                                                    type="password" name="password" required
+                                                    autocomplete="new-password" placeholder="Password"/>
+                                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                            </div>
 
-                                    <!-- Género -->
-                                    <div class="form-group">
-                                        <x-input-label for="genero" />
-                                        <select id="genero" name="genero" class="form-control form-control-user"
-                                            required autofocus>
-                                            <option value="">Selecione uma opção</option>
-                                            <option value="Feminino">Masculino</option>
-                                            <option value="Masculino">Feminino</option>
-                                            <option value="Outro">Outro</option>
-                                        </select>
-                                        <x-input-error :messages="$errors->get('genero')" class="mt-2" />
-                                    </div>
+                                            <div class="col-sm-6">
+                                                <x-input-label for="password_confirmation" />
+                                                <x-password-input id="password_confirmation" class="form-control form-control-user"
+                                                    type="password" name="password_confirmation" required autocomplete="new-password"
+                                                    placeholder="Confirmar Password"/>
+                                                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                            </div>
+                                        </div>
 
+                                            <br />
 
-                                    <!-- Password -->
-                                    <div class="form-group">
-                                        <x-input-label for="password" />
-                                        <x-password-input id="password" class="form-control form-control-user"
-                                            type="password" name="password" required
-                                            autocomplete="new-password" placeholder="Password"/>
-                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                                    </div>
-
-                                    <!-- Confirm Password -->
-                                    <div class="form-group">
-                                        <x-input-label for="password_confirmation" />
-                                        <x-password-input id="password_confirmation" class="form-control form-control-user"
-                                            type="password" name="password_confirmation" required autocomplete="new-password"
-                                            placeholder="Confirmar Password"/>
-                                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                                    </div>
-                                                                       
-
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('Criar Conta') }}</button>
-
-                                </form>
+                                            <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('Criar Conta') }}</button>
+                                    </form>
 
                                 <hr>
                                 <div class="text-center">

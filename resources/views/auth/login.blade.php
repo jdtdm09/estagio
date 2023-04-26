@@ -76,15 +76,15 @@
                                             <button type="submit" class="btn btn-primary btn-user btn-block">
                                                 {{ __('Login') }}
                                             </button>
-                                        
+                                    </form>
                                         <hr />
                                         
                                         <div class="text-center">
-                                            <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                            <a class="small" href="forgot-password.html">Esqueceu a Password?</a>
                                         </div>
                                         
                                         <div class="text-center">
-                                            <a class="small" href="register.html">Create an Account!</a>
+                                            <a class="small" href="register">Crie uma Conta!</a>
                                         </div>
                                         
                                         </div>
