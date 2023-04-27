@@ -16,7 +16,7 @@
     <script src="{{ asset('jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('bootstrap\js\bootstrap.bundle.min.js') }}"></script>
 
-    <title>Eventos</title>
+    <title>Eventos - Adicionar Utilizador</title>
     
     <!-- Custom fonts for this template-->
     <link
