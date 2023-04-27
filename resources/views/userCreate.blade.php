@@ -316,62 +316,77 @@
                             @csrf
             
                             <!-- Name -->
-                            <div>
-                                <x-label for="name" :value="__('Nome')" />
-            
-                                <x-input id="name" class="block mt-1 w-full" type="text" placeholder="Nome" name="name" required autofocus />
+                            <div class="mt-4">
+                                <label for="name" class="block text-gray-700 font-bold mb-2">
+                                Nome
+                                </label>
+                            
+                                <x-input id="name" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Nome" name="name" required autofocus />
                             </div>
-            
+                            
                             <!-- Email -->
                             <div class="mt-4">
-                                <x-label for="email" :value="__('Email')" />
-            
-                                <x-input id="email" class="block mt-1 w-full" type="email" placeholder="Email" name="email" required />
+                                <label for="email" class="block text-gray-700 font-bold mb-2">
+                                Email
+                                </label>
+                            
+                                <x-input id="email" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" placeholder="Email" name="email" required />
                             </div>
-            
+                            
                             <!-- Phone Number -->
                             <div class="mt-4">
-                                <x-label for="nTelemovel" :value="__('Nº Telemóvel')" />
-            
-                                <x-input id="nTelemovel" class="block mt-1 w-full" type="tel" placeholder="Nº Telemóvel" name="nTelemovel" required />
+                                <label for="nTelemovel" class="block text-gray-700 font-bold mb-2">
+                                Nº Telemóvel
+                                </label>
+                            
+                                <x-input id="nTelemovel" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="tel" placeholder="Nº Telemóvel" name="nTelemovel" required />
                             </div>
-            
+                            
                             <!-- Date of Birth -->
                             <div class="mt-4">
-                                <x-label for="dataNascimento" :value="__('Data de Nascimento')" />
-            
-                                <x-input id="dataNascimento" class="block mt-1 w-full" type="date" name="dataNascimento" required />
+                                <label for="dataNascimento" class="block text-gray-700 font-bold mb-2">
+                                Data de Nascimento
+                                </label>
+                            
+                                <x-input id="dataNascimento" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" name="dataNascimento" required />
                             </div>
-            
+                            
                             <!-- Password -->
                             <div class="mt-4">
-                                <x-label for="password" :value="__('Password')" />
-            
-                                <x-input id="password" class="block mt-1 w-full" type="password" name="password" placeholder="Password" required />
+                                <label for="password" class="block text-gray-700 font-bold mb-2">
+                                Password
+                                </label>
+                            
+                                <x-input id="password" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="password" name="password" placeholder="Password" required />
                             </div>
-            
+                            
                             <!-- Gender -->
                             <div class="mt-4">
-                                <x-label for="genero" :value="__('Género')" />
-            
-                                <select id="genero" name="genero" class="block mt-1 w-full rounded-md">
-                                    <option disabled selected>Género</option>
-                                    <option value="Masculino">Masculino</option>
-                                    <option value="Feminino">Feminino</option>
-                                    <option value="Outro">Outro</option>
+                                <label for="genero" class="block text-gray-700 font-bold mb-2">
+                                Género
+                                </label>
+                            
+                                <select id="genero" name="genero" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option disabled selected>Género</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Feminino">Feminino</option>
+                                <option value="Outro">Outro</option>
                                 </select>
                             </div>
-            
+                            
                             <!-- Role -->
                             <div class="mt-4">
-                                <x-label for="cargo" :value="__('Cargo')" />
-            
-                                <select id="cargo" name="cargo" class="block mt-1 w-full rounded-md">
-                                    <option disabled selected>Cargo</option>
-                                    <option value="1">Administrador</option>
-                                    <option value="0">Utilizador</option>
+                                <label for="cargo" class="block text-gray-700 font-bold mb-2">
+                                Cargo
+                                </label>
+                            
+                                <select id="cargo" name="cargo" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option disabled selected>Cargo</option>
+                                <option value="1">Administrador</option>
+                                <option value="0">Utilizador</option>
                                 </select>
                             </div>
+  
             
                             <div class="flex items-center justify-end mt-4">
                                 <x-button class="ml-4">

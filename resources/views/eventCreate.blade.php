@@ -312,59 +312,64 @@
                     <!-- Content Row -->
                     <div class="row">
 
-                        <form method="POST" action="{{ route('eventStore') }}">
+                        <form method="POST" action="{{ route('eventStore') }}" class="grid grid-cols-1 gap-6 mt-4">
                             @csrf
-            
+                          
                             <!-- Name -->
                             <div>
-                                <x-label for="nome" :value="__('Nome')" />
-            
-                                <x-input id="nome" class="block mt-1 w-full" type="text" placeholder="Nome" name="nome" required autofocus />
+                              <label for="nome" class="block text-gray-700 font-bold mb-2">
+                                Nome
+                              </label>
+                              <input id="nome" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Nome" name="nome" required autofocus>
                             </div>
-            
+                          
                             <!-- Descrição -->
-                            <div class="mt-4">
-                                <x-label for="descricao" :value="__('Descrição')" />
-            
-                                <x-input id="descricao" class="block mt-1 w-full" type="text" placeholder="Descrição" name="descricao" required />
+                            <div>
+                              <label for="descricao" class="block text-gray-700 font-bold mb-2">
+                                Descrição
+                              </label>
+                              <input id="descricao" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Descrição" name="descricao" required>
                             </div>
-            
+                          
                             <!-- Localização -->
-                            <div class="mt-4">
-                                <x-label for="localizacao" :value="__('Localização')" />
-            
-                                <x-input id="localizacao" class="block mt-1 w-full" type="text" placeholder="Localização" name="localizacao" required />
+                            <div>
+                              <label for="localizacao" class="block text-gray-700 font-bold mb-2">
+                                Localização
+                              </label>
+                              <input id="localizacao" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Localização" name="localizacao" required>
                             </div>
-            
+                          
                             <!-- Data e Hora -->
-                            <div class="mt-4">
-                                <x-label for="data_hora" :value="__('Data e Hora')" />
-            
-                                <x-input id="data_hora" class="block mt-1 w-full" type="datetime-local" name="data_hora" required />
+                            <div>
+                              <label for="data_hora" class="block text-gray-700 font-bold mb-2">
+                                Data e Hora
+                              </label>
+                              <input id="data_hora" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="datetime-local" name="data_hora" required>
                             </div>
-            
+                          
                             <!-- Número de Vagas -->
-                            <div class="mt-4">
-                                <x-label for="numero_vagas" :value="__('Número de Vagas')" />
-            
-                                <x-input id="numero_vagas" class="block mt-1 w-full" type="number" name="numero_vagas" placeholder="Número Vagas" required />
+                            <div>
+                              <label for="numero_vagas" class="block text-gray-700 font-bold mb-2">
+                                Número de Vagas
+                              </label>
+                              <input id="numero_vagas" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" name="numero_vagas" placeholder="Número de Vagas" required>
                             </div>
-            
+                          
                             <!-- Vagas Disponíveis -->
-                            <div class="mt-4">
-                              <x-label for="vagas_disponiveis" :value="__('Vagas Disponíveis')" />
-                              <x-input id="vagas_disponiveis" class="block mt-1 w-full" type="number" name="vagas_disponiveis" placeholder="Vagas Disponíveis" required />
+                            <div>
+                              <label for="vagas_disponiveis" class="block text-gray-700 font-bold mb-2">
+                                Vagas Disponíveis
+                              </label>
+                              <input id="vagas_disponiveis" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" name="vagas_disponiveis" placeholder="Vagas Disponíveis" required>
                             </div>
-            
-            
+                          
                             <div class="flex items-center justify-end mt-4">
                                 <x-button class="ml-4">
                                     {{ __('Criar') }}
                                 </x-button>
                             </div>
-                        </form>
-            
-            
+                          </form>
+
                     </div>
                 </div>
             </div>

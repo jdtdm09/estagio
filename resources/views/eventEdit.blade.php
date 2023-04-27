@@ -318,45 +318,52 @@
             
                             <!-- Nome -->
                             <div>
-                                <x-label for="nome" :value="__('Nome')" />
-            
-                                <x-input id="nome" class="block mt-1 w-full" type="text" name="nome" :value="$event->nome" required autofocus />
+                                <label for="nome" class="block text-gray-700 font-bold mb-2">
+                                    Nome
+                                </label>
+                                <x-input id="nome" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="nome" :value="$event->nome" required autofocus />
                             </div>
-            
+
                             <!-- Descrição -->
                             <div class="mt-4">
-                                <x-label for="descricao" :value="__('Descrição')" />
-            
-                                <x-input id="descricao" class="block mt-1 w-full" type="text" name="descricao" :value="$event->descricao" required />
+                                <label for="descricao" class="block text-gray-700 font-bold mb-2">
+                                    Descrição
+                                </label>
+                                <x-input id="descricao" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="descricao" :value="$event->descricao" required />
                             </div>
-            
+
                             <!-- Localização -->
                             <div class="mt-4">
-                                <x-label for="localizacao" :value="__('Localização')" />
-            
-                                <x-input id="localizacao" class="block mt-1 w-full" type="text" name="localizacao" :value="$event->localizacao" required />
+                                <label for="localizacao" class="block text-gray-700 font-bold mb-2">
+                                    Localização
+                                </label>
+                                <x-input id="localizacao" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="localizacao" :value="$event->localizacao" required />
                             </div>
-            
+
                             <!-- Data e Hora -->
                             <div class="mt-4">
-                                <x-label for="data_hora" :value="__('Data e Hora')" />
-            
-                                <x-input id="data_hora" class="block mt-1 w-full" type="datetime-local" name="data_hora" :value="$event->data_hora" required />
+                                <label for="data_hora" class="block text-gray-700 font-bold mb-2">
+                                    Data e Hora
+                                </label>
+                                <x-input id="data_hora" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="datetime-local" name="data_hora" :value="$event->data_hora" required />
                             </div>
-            
-                            <!-- Nímero de Vagas -->
+
+                            <!-- Número de Vagas -->
                             <div class="mt-4">
-                                <x-label for="numero_vagas" :value="__('Número de Vagas')" />
-            
-                                <x-input id="numero_vagas" class="block mt-1 w-full" type="number" name="numero_vagas" :value="$event->numero_vagas" required />
+                                <label for="numero_vagas" class="block text-gray-700 font-bold mb-2">
+                                    Número de Vagas
+                                </label>
+                                <x-input id="numero_vagas" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" name="numero_vagas" :value="$event->numero_vagas" required />
                             </div>
-            
+
                             <!-- Vagas Disponíveis-->
                             <div class="mt-4">
-                                <x-label for="vagas_disponiveis" :value="__('Vagas Disponíveis')" />
-            
-                                <x-input id="vagas_disponiveis" class="block mt-1 w-full" type="number" name="vagas_disponiveis" :value="$event->vagas_disponiveis" required />
+                                <label for="vagas_disponiveis" class="block text-gray-700 font-bold mb-2">
+                                    Vagas Disponíveis
+                                </label>
+                                <x-input id="vagas_disponiveis" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" name="vagas_disponiveis" :value="$event->vagas_disponiveis" required />
                             </div>
+
             
                             <div class="flex items-center justify-end mt-4">
                                 <x-button class="ml-4">

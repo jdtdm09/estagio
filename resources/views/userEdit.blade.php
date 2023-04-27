@@ -316,54 +316,61 @@
                             @csrf
                             @method('PUT')
             
-                            <!-- Name -->
-                            <div>
-                                <x-label for="name" :value="__('Name')" />
-            
-                                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="$user->name" required autofocus />
+                           <!-- Name -->
+                            <div class="mt-4">
+                                <label for="name" class="block text-gray-700 font-bold mb-2">
+                                    Nome
+                                </label>
+                                <x-input id="name" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="name" :value="$user->name" required autofocus />
                             </div>
-            
+
                             <!-- Email -->
                             <div class="mt-4">
-                                <x-label for="email" :value="__('Email')" />
-            
-                                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="$user->email" required />
+                                <label for="email" class="block text-gray-700 font-bold mb-2">
+                                    Email
+                                </label>
+                                <x-input id="email" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" name="email" :value="$user->email" required />
                             </div>
-            
+
                             <!-- Phone Number -->
                             <div class="mt-4">
-                                <x-label for="nTelemovel" :value="__('Phone Number')" />
-            
-                                <x-input id="nTelemovel" class="block mt-1 w-full" type="text" name="nTelemovel" :value="$user->nTelemovel" required />
+                                <label for="nTelemovel" class="block text-gray-700 font-bold mb-2">
+                                    Nº Telemóvel
+                                </label>
+                                <x-input id="nTelemovel" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="nTelemovel" :value="$user->nTelemovel" required />
                             </div>
-            
+
                             <!-- Date of Birth -->
                             <div class="mt-4">
-                                <x-label for="dataNascimento" :value="__('Date of Birth')" />
-            
-                                <x-input id="dataNascimento" class="block mt-1 w-full" type="date" name="dataNascimento" :value="$user->dataNascimento" required />
+                                <label for="dataNascimento" class="block text-gray-700 font-bold mb-2">
+                                    Data de Nascimento
+                                </label>
+                                <x-input id="dataNascimento" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" name="dataNascimento" :value="$user->dataNascimento" required />
                             </div>
-            
+
                             <!-- Gender -->
                             <div class="mt-4">
-                                <x-label for="genero" :value="__('Gender')" />
-            
-                                <select id="genero" name="genero" class="block mt-1 w-full rounded-md">
+                                <label for="genero" class="block text-gray-700 font-bold mb-2">
+                                    Género
+                                </label>
+                                <select id="genero" name="genero" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                     <option value="Masculino" @if($user->genero == 'Masculino') selected @endif>Masculino</option>
                                     <option value="Feminino" @if($user->genero == 'Feminino') selected @endif>Feminino</option>
                                     <option value="Outro" @if($user->genero == 'Outro') selected @endif>Outro</option>
                                 </select>
                             </div>
-            
+
                             <!-- Role -->
                             <div class="mt-4">
-                                <x-label for="cargo" :value="__('Role')" />
-            
-                                <select id="cargo" name="cargo" class="block mt-1 w-full rounded-md">
+                                <label for="cargo" class="block text-gray-700 font-bold mb-2">
+                                    Cargo
+                                </label>
+                                <select id="cargo" name="cargo" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                     <option value="1" @if($user->cargo) selected @endif>Administrador</option>
                                     <option value="0" @if(!$user->cargo) selected @endif>Utilizador</option>
                                 </select>
                             </div>
+
             
                             <div class="flex items-center justify-end mt-4">
                                 <x-button class="ml-4">
