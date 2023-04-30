@@ -275,7 +275,7 @@
                                         {{ Auth::user()->name }}
                                     @endauth
                                 </span>
-                                <img class="img-profile rounded-circle" src="/img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="{{ $user->avatar ? '/storage/'.$user->avatar : '/img/undraw_profile.svg' }}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -313,8 +313,7 @@
                             <div class="col-lg-4">
                               <div class="card mb-4">
                                 <div class="card-body text-center">
-                                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                                    class="rounded-circle img-fluid" style="width: 150px;">
+                                    <img src="{{ $user->avatar ? '/storage/'.$user->avatar : '/img/undraw_profile.svg' }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                                     <h5 class="my-3">
                                     @auth
                                     {{ Auth::user()->name }}
