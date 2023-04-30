@@ -1,3 +1,6 @@
+@php
+  $currentUrl = url()->current();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,12 +83,12 @@
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Administrador</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gerir:</h6>
-                        <a class="collapse-item" href="{{ route('events') }}">Eventos</a>
-                        <a class="collapse-item" href="{{ route('users') }}">Utilizadores</a>
-                        <a class="collapse-item">Pagamentos</a>
+                        <a class="collapse-item {{ strpos($currentUrl, 'events') !== false ? 'active' : '' }}" href="{{ route('events') }}">Eventos</a>
+                        <a class="collapse-item {{ strpos($currentUrl, 'users') !== false ? 'active' : '' }}" href="{{ route('users') }}">Utilizadores</a>
+                        <a class="collapse-item {{ strpos($currentUrl, 'pagamentos') !== false ? 'active' : '' }}" href="#">Pagamentos</a>
                     </div>
                 </div>
             </li>
@@ -290,7 +293,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('profile') }}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Perfil
                                 </a>

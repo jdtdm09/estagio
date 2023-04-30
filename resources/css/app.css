@@ -1,3 +1,8 @@
 /* @tailwind base;
 @tailwind components;
 @tailwind utilities; */
+.collapse-item.active {
+    background-color: #f8f9fa;
+    color: #212529;
+    font-weight: bold;
+}

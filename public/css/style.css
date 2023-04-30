@@ -9,3 +9,9 @@
 .textbonito {
     margin-left: 15%;
 }
+
+.collapse-item.active {
+    background-color: #f8f9fa;
+    color: #212529;
+    font-weight: bold;
+}

@@ -63,7 +63,7 @@
                                                 <x-input-label for="nTelemovel" />
                                                 <x-text-input id="nTelemovel" class="form-control form-control-user"
                                                     type="text" name="nTelemovel" :value="old('nTelemovel')" required autofocus
-                                                    autocomplete="phone" placeholder="Número de Telemóvel" />
+                                                    autocomplete="phone" placeholder="Nº Telemóvel" />
                                                 <x-input-error :messages="$errors->get('nTelemovel')" class="mt-2" />
                                             </div>
 

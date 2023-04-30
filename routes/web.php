@@ -41,6 +41,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     })->name('admin');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', function () {
+        return view('profile');
+    })->name('profile');
+});
+
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/users', function () {
         $users = User::all();
