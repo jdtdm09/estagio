@@ -253,9 +253,10 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="evento">
-                                                <h1 class="text-center my-4" style="font-size: 24px; margin-top: 20px;">{{ $event->imagem }}</h1>
-                                                <div class="evento-info">
+                                            <div class="evento" style="position: relative; max-width: 500px; margin: auto;">
+                                                <h1 class="text-center my-4" style="font-size: 24px; margin-top: 20px; z-index: -1;">{{ $event->nome }}</h1>
+                                                <div class="evento-info" style=" position: absolute; top: 0; left: 0; width: 100%; z-index: 1;">
+                                                    <img src="{{ asset($event->imagem) }}" style="width: 100%; height: auto;"/>
                                                 </div>
                                             </div>
                                         </div>
