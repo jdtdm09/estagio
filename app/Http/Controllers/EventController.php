@@ -24,22 +24,33 @@ class EventController extends Controller
 
     public function store(Request $request): RedirectResponse
 {
+    $requestData = $request->all();
+    $fileName = time().$request->file('imagem')->getClientOriginalName();
+    $path = $request->file('imagem')->storeAs('eventos', $fileName, 'public');
+    $requestData["imagem"] = '/storage/'.$path;
+    Event::create($requestData);
+    return  redirect('events')->with('flash_message', 'Evento Adicionado!');
+
     $request->validate([
         'nome' => 'required|string|max:255',
         'descricao' => 'required|max:800',
         'localizacao' => 'required|string|max:255',
-        'data_hora' => 'required|date',
+        'data_inicio' => 'required|date',
+        'data_fim' => 'required|date',
         'numero_vagas' => 'required|integer',
         'vagas_disponiveis' => 'required|integer',
+        'imagem' => 'required|string',
     ]);
 
     $event = new Event([
         'nome' => $request->input('nome'),
         'descricao' => $request->input('descricao'),
         'localizacao' => $request->input('localizacao'),
-        'data_hora' => $request->input('data_hora'),
+        'data_inicio' => $request->input('data_inicio'),
+        'data_fim' => $request->input('data_fim'),
         'numero_vagas' => $request->input('numero_vagas'),
-        'vagas_disponiveis' => $request->input('vagas_disponiveis')
+        'vagas_disponiveis' => $request->input('vagas_disponiveis'),
+        'imagem' => $request->input('imagem'),
     ]);
 
     $event->save();
@@ -60,17 +71,21 @@ public function update(Request $request, Event $event)
         'nome' => 'required|string|max:255',
         'descricao' => 'required|string|max:800',
         'localizacao' => 'required|string|max:255',
-        'data_hora' => 'required|date',
+        'data_inicio' => 'required|date',
+        'data_fim' => 'required|date',
         'numero_vagas' => 'required|integer',
         'vagas_disponiveis' => 'required|integer',
+        'imagem' => 'required|string',
     ]);
 
     $event->nome = $request->input('nome');
     $event->descricao = $request->input('descricao');
     $event->localizacao = $request->input('localizacao');
-    $event->data_hora = $request->input('data_hora');
+    $event->data_inicio = $request->input('data_inicio');
+    $event->data_fim = $request->input('data_fim');
     $event->numero_vagas = $request->input('numero_vagas');
     $event->vagas_disponiveis = $request->input('vagas_disponiveis');
+    $event->imagem = $request->input('imagem');
 
     $event->save();
 

@@ -37,7 +37,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -49,7 +49,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="dashboard">
+                <a class="nav-link" href="{{ route('dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -275,12 +275,20 @@
                                 <x-input id="localizacao" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="localizacao" :value="$event->localizacao" required />
                             </div>
 
-                            <!-- Data e Hora -->
+                            <!-- Data Inicio -->
                             <div class="mt-4">
-                                <label for="data_hora" class="block text-gray-700 font-bold mb-2">
-                                    Data e Hora
+                                <label for="data_inicio" class="block text-gray-700 font-bold mb-2">
+                                    Data de Ínicio
                                 </label>
-                                <x-input id="data_hora" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="datetime-local" name="data_hora" :value="$event->data_hora" required />
+                                <x-input id="data_inicio" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="datetime-local" name="data_inicio" :value="$event->data_inicio" required />
+                            </div>
+
+                            <!-- Data Fim -->
+                            <div class="mt-4">
+                                <label for="data_fim" class="block text-gray-700 font-bold mb-2">
+                                    Data de Fim
+                                </label>
+                                <x-input id="data_fim" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="datetime-local" name="data_fim" :value="$event->data_fim" required />
                             </div>
 
                             <!-- Número de Vagas -->
@@ -297,6 +305,14 @@
                                     Vagas Disponíveis
                                 </label>
                                 <x-input id="vagas_disponiveis" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" name="vagas_disponiveis" :value="$event->vagas_disponiveis" required />
+                            </div>
+                            
+                            <!-- Imagem -->
+                            <div class="mt-4">
+                                <label for="imagem" class="block text-gray-700 font-bold mb-2">
+                                    Imagem
+                                </label>
+                                <x-input id="imagem" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="file" name="imagem" :value="$event->imagem" required />
                             </div>
 
             

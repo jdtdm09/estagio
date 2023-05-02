@@ -37,7 +37,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -49,7 +49,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="dashboard">
+                <a class="nav-link" href="{{ route('dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -317,7 +317,7 @@
                                   <hr>
                                   <div class="row">
                                     <div class="col-sm-3">
-                                      <p class="mb-0">Género</p>
+                                      <p class="mb-0">Gênero</p>
                                     </div>
                                     <div class="col-sm-9">
                                         <p class="text-muted mb-0">

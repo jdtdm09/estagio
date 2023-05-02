@@ -54,7 +54,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -66,7 +66,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="dashboard">
+                <a class="nav-link" href="{{ route('dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -283,7 +283,8 @@
                                             <th>Nome</th>
                                             <th>Descrição</th>
                                             <th>Localização</th>
-                                            <th>Data e Hora</th>
+                                            <th>Data Ínicio</th>
+                                            <th>Data Fim</th>
                                             <th>Número de Vagas</th>
                                             <th>Vagas Disponíveis</th>
                                             <th>Opções</th>
@@ -296,7 +297,8 @@
                                                     <td>{{ $event->nome }}</td>
                                                     <td>{{ $event->descricao }}</td>
                                                     <td>{{ $event->localizacao }}</td>
-                                                    <td>{{ $event->data_hora }}</td>
+                                                    <td>{{ $event->data_inicio }}</td>
+                                                    <td>{{ $event->data_fim }}</td>
                                                     <td>{{ $event->numero_vagas }}</td>
                                                     <td>{{ $event->vagas_disponiveis }}</td>
                                                     <td style="text-align: center;">

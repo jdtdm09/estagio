@@ -37,7 +37,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -49,7 +49,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="dashboard">
+                <a class="nav-link" href="{{ route('dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -246,55 +246,71 @@
                     <!-- Content Row -->
                     <div class="row">
 
-                        <form method="POST" action="{{ route('eventStore') }}" class="grid grid-cols-1 gap-6 mt-4">
+                        <form method="POST" action="{{ route('eventStore') }}" class="grid grid-cols-1 gap-6 mt-4" enctype="multipart/form-data">
                             @csrf
                           
-                            <!-- Name -->
+                            <!-- Nome -->
                             <div>
-                              <label for="nome" class="block text-gray-700 font-bold mb-2">
-                                Nome
-                              </label>
-                              <input id="nome" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Nome" name="nome" required autofocus>
+                                <label for="nome" class="block text-gray-700 font-bold mb-2">
+                                    Nome
+                                </label>
+                                <x-input id="nome" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="nome" required autofocus />
                             </div>
-                          
+
                             <!-- Descrição -->
-                            <div>
-                              <label for="descricao" class="block text-gray-700 font-bold mb-2">
-                                Descrição
-                              </label>
-                              <input id="descricao" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Descrição" name="descricao" required>
+                            <div class="mt-4">
+                                <label for="descricao" class="block text-gray-700 font-bold mb-2">
+                                    Descrição
+                                </label>
+                                <x-input id="descricao" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="descricao" required />
                             </div>
-                          
+
                             <!-- Localização -->
-                            <div>
-                              <label for="localizacao" class="block text-gray-700 font-bold mb-2">
-                                Localização
-                              </label>
-                              <input id="localizacao" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Localização" name="localizacao" required>
+                            <div class="mt-4">
+                                <label for="localizacao" class="block text-gray-700 font-bold mb-2">
+                                    Localização
+                                </label>
+                                <x-input id="localizacao" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="localizacao" required />
                             </div>
-                          
-                            <!-- Data e Hora -->
-                            <div>
-                              <label for="data_hora" class="block text-gray-700 font-bold mb-2">
-                                Data e Hora
-                              </label>
-                              <input id="data_hora" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="datetime-local" name="data_hora" required>
+
+                            <!-- Data Inicio -->
+                            <div class="mt-4">
+                                <label for="data_inicio" class="block text-gray-700 font-bold mb-2">
+                                    Data de Ínicio
+                                </label>
+                                <x-input id="data_inicio" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="datetime-local" name="data_inicio" required />
                             </div>
-                          
+
+                            <!-- Data Fim -->
+                            <div class="mt-4">
+                                <label for="data_fim" class="block text-gray-700 font-bold mb-2">
+                                    Data de Fim
+                                </label>
+                                <x-input id="data_fim" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="datetime-local" name="data_fim" required />
+                            </div>
+
                             <!-- Número de Vagas -->
-                            <div>
-                              <label for="numero_vagas" class="block text-gray-700 font-bold mb-2">
-                                Número de Vagas
-                              </label>
-                              <input id="numero_vagas" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" name="numero_vagas" placeholder="Número de Vagas" required>
+                            <div class="mt-4">
+                                <label for="numero_vagas" class="block text-gray-700 font-bold mb-2">
+                                    Número de Vagas
+                                </label>
+                                <x-input id="numero_vagas" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" name="numero_vagas" required />
                             </div>
-                          
-                            <!-- Vagas Disponíveis -->
-                            <div>
-                              <label for="vagas_disponiveis" class="block text-gray-700 font-bold mb-2">
-                                Vagas Disponíveis
-                              </label>
-                              <input id="vagas_disponiveis" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" name="vagas_disponiveis" placeholder="Vagas Disponíveis" required>
+
+                            <!-- Vagas Disponíveis-->
+                            <div class="mt-4">
+                                <label for="vagas_disponiveis" class="block text-gray-700 font-bold mb-2">
+                                    Vagas Disponíveis
+                                </label>
+                                <x-input id="vagas_disponiveis" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" name="vagas_disponiveis" required />
+                            </div>
+                            
+                            <!-- Imagem -->
+                            <div class="mt-4">
+                                <label for="imagem" class="block text-gray-700 font-bold mb-2">
+                                    Imagem
+                                </label>
+                                <x-input id="imagem" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="file" name="imagem" required />
                             </div>
                           
                             <div class="flex items-center justify-end mt-4">

@@ -13,8 +13,10 @@ class Event extends Model
         'nome',
         'descricao',
         'localizacao',
-        'data_hora',
+        'data_inicio',
+        'data_fim',
         'numero_vagas',
         'vagas_disponiveis',
+        'imagem'
     ];
 }

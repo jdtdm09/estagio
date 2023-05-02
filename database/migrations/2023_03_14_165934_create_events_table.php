@@ -16,9 +16,11 @@ return new class extends Migration
             $table->string('nome');
             $table->text('descricao');
             $table->text('localizacao');
-            $table->dateTime('data_hora');
+            $table->dateTime('data_inicio');
+            $table->dateTime('data_fim');
             $table->integer('numero_vagas');
             $table->integer('vagas_disponiveis');
+            $table->string('imagem');
             $table->timestamps();
         });
     }
