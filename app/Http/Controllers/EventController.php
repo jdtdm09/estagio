@@ -39,7 +39,7 @@ class EventController extends Controller
         'data_fim' => 'required|date',
         'numero_vagas' => 'required|integer',
         'vagas_disponiveis' => 'required|integer',
-        'imagem' => 'required|string',
+        'imagem' => 'required|image',
     ]);
 
     $event = new Event([
@@ -75,8 +75,13 @@ public function update(Request $request, Event $event)
         'data_fim' => 'required|date',
         'numero_vagas' => 'required|integer',
         'vagas_disponiveis' => 'required|integer',
-        'imagem' => 'required|string',
+        'imagem' => 'required|image',
     ]);
+
+    $requestData = $request->all();
+    $fileName = time().$request->file('imagem')->getClientOriginalName();
+    $path = $request->file('imagem')->storeAs('eventos', $fileName, 'public');
+    $requestData["imagem"] = '/storage/'.$path;
 
     $event->nome = $request->input('nome');
     $event->descricao = $request->input('descricao');
@@ -85,12 +90,14 @@ public function update(Request $request, Event $event)
     $event->data_fim = $request->input('data_fim');
     $event->numero_vagas = $request->input('numero_vagas');
     $event->vagas_disponiveis = $request->input('vagas_disponiveis');
-    $event->imagem = $request->input('imagem');
+    $event->imagem = $requestData["imagem"];
 
     $event->save();
 
-    return redirect()->route('events');
+    return redirect()->route('events')->with('flash_message', 'Evento Atualizado!');
 }
+
+
 
     public function destroy($id)
 {
