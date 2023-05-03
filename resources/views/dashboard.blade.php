@@ -254,9 +254,12 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="evento">
-                                                <h1 class="text-center my-4" style="min-height: 100px; white-space:pre-wrap;">{{ $event->nome }}</h1>
+                                                <h1 class="text-center my-4" style="min-height: 20px; white-space:pre-wrap; font-size: 18px;
+                                                color: #333;">{{ $event->nome }}</h1>
                                                 <div class="evento-info">
-                                                    <img src="{{ asset($event->imagem) }}" style="width: 100%; height: auto;"/>
+                                                    <center>
+                                                    <img src="{{ asset($event->imagem) }}" style="width: 85%; height: auto;"/>
+                                                    </center>
                                                 </div>
                                             </div>
                                         </div>
