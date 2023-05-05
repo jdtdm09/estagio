@@ -254,14 +254,21 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="evento">
-                                                <h1 class="text-center my-4" style="min-height: 20px; white-space:pre-wrap; font-size: 18px;
-                                                color: #333;">{{ $event->nome }}</h1>
-                                                <div class="evento-info">
-                                                    <center>
+                                                <h1 class="text-center my-4" style="min-height: 63px; white-space: pre-wrap; font-size: 1.69rem; color: #333;">{{ $event->nome }}</h1>
+                                                <div class="evento-info" style="margin-top: 1rem;">
+                                                  <center>
                                                     <img src="{{ asset($event->imagem) }}" style="width: 85%; height: auto;"/>
-                                                    </center>
+                                                  </center>
                                                 </div>
-                                            </div>
+                                              </div>
+                                              
+                                              <style>
+                                                @media screen and (min-width: 1200px) {
+                                                  h1 {
+                                                    font-size: 2rem;
+                                                  }
+                                                }
+                                              </style>                                                                                  
                                         </div>
                                     </div>
                                 </div>

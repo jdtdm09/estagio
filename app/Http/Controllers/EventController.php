@@ -14,7 +14,11 @@ class EventController extends Controller
 {
     $events = Event::all();
     
-    return view('listEvents', compact('events'));
+    // return view('listEvents', compact('events'));
+    return [
+        "status" => 1,
+        "data" => $events
+    ];
 }
 
     public function create()
@@ -105,5 +109,13 @@ public function update(Request $request, Event $event)
     $event->delete();
 
     return redirect()->route('events');
+}
+
+    public function show(Event $event)
+{
+    return [
+        "status" => 1,
+        "data" => $event
+    ];
 }
 }
