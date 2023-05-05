@@ -258,19 +258,11 @@
                                     </h5>
                                   <p class="text-muted mb-1">Full Stack Developer</p>
                                   <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
-                                  <div class="d-flex justify-content-center mb-2">
-                                    <button type="button" class="btn btn-primary">Follow</button>
-                                    <button type="button" class="btn btn-outline-primary ms-1">Message</button>
-                                  </div>
                                 </div>
                               </div>
                               <div class="card mb-4 mb-lg-0">
                                 <div class="card-body p-0">
                                   <ul class="list-group list-group-flush rounded-3">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                      <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                                      <p class="mb-0">mdbootstrap</p>
-                                    </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                       <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
                                       <p class="mb-0">mdbootstrap</p>
@@ -347,69 +339,51 @@
                                       <p class="mb-0">Redefinir Password:</p>
                                     </div>
                                     <div class="col-sm-9">
-                                      <form method="POST" action="{{ route('password.update') }}">
-                                        @csrf
-                                        @method('PUT')
-                                        <div class="form-group row">
-                                          <label for="senha" class="col-md-4 col-form-label text-md-right">Nova Password:</label>
-                                          <div class="col-md-6">
-                                            <input id="senha" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                                            @error('password')
-                                              <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                              </span>
-                                            @enderror
-                                          </div>
-                                        </div>
-                                        <div class="form-group row">
-                                          <label for="senha-confirmacao" class="col-md-4 col-form-label text-md-right">Confirmar :</label>
-                                          <div class="col-md-6">
-                                            <input id="senha-confirmacao" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                          </div>
-                                        </div>
-                                        <div class="form-group row mb-0">
-                                          <div class="col-md-6 offset-md-4">
-                                            <button type="submit" class="btn btn-primary">
-                                              Redefinir Senha
-                                            </button>
-                                          </div>
-                                        </div>
-                                      </form>
+                                        <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
+                                            @csrf
+                                            @method('put')
+                                    
+                                            <div>
+                                                <x-input-label for="current_password" :value="__('Password Atual')" />
+                                                <x-text-input id="current_password" name="current_password" type="password" class="mt-1 block w-full" autocomplete="current-password" />
+                                                <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
+                                            </div>
+                                    
+                                            <div>
+                                                <x-input-label for="password" :value="__('Nova Password')" />
+                                                <x-text-input id="password" name="password" type="password" class="mt-1 block w-full" autocomplete="new-password" />
+                                                <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
+                                            </div>
+                                    
+                                            <div>
+                                                <x-input-label for="password_confirmation" :value="__('Confirmar Password')" />
+                                                <x-text-input id="password_confirmation" name="password_confirmation" type="password" class="mt-1 block w-full" autocomplete="new-password" />
+                                                <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
+                                            </div>
+                                    
+                                            <div class="flex items-center gap-4">
+                                                <x-primary-button>{{ __('Guardar') }}</x-primary-button>
+                                    
+                                                @if (session('status') === 'password-updated')
+                                                    <p
+                                                        x-data="{ show: true }"
+                                                        x-show="show"
+                                                        x-transition
+                                                        x-init="setTimeout(() => show = false, 2000)"
+                                                        class="text-sm text-gray-600 dark:text-gray-400"
+                                                    >{{ __('Atualizada.') }}</p>
+                                                @endif
+                                            </div>
+                                        </form>
                                     </div>
                                   </div>                                  
                             </div>
                           </div>
                         </div>
-                    <!-- Content Row -->
-                    {{-- <div class="py-12">
-                        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-                            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                                <div class="max-w-xl">
-                                    @include('profile.partials.user-avatar-form')
-                                </div>
-                            </div>
-                
-                            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                                <div class="max-w-xl">
-                                    @include('profile.partials.update-profile-information-form')
-                                </div>
-                            </div>
-                
-                            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                                <div class="max-w-xl">
-                                    @include('profile.partials.update-password-form')
-                                </div>
-                            </div>
-                
-                            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                                <div class="max-w-xl">
-                                    @include('profile.partials.delete-user-form')
-                                </div>
-                            </div>
-                        </div>
-                    </div>  --}}
+                    </div>
                 </div>
             </div>
+        </div>
             <!-- End of Main Content -->
 
             <!-- Footer -->

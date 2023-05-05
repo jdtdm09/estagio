@@ -79,14 +79,18 @@ public function update(Request $request, Event $event)
         'data_fim' => 'required|date',
         'numero_vagas' => 'required|integer',
         'vagas_disponiveis' => 'required|integer',
-        'imagem' => 'required|image',
+        'imagem' => 'image',
     ]);
 
-    $requestData = $request->all();
-    $fileName = time().$request->file('imagem')->getClientOriginalName();
-    $path = $request->file('imagem')->storeAs('eventos', $fileName, 'public');
-    $requestData["imagem"] = '/storage/'.$path;
+    if ($request->hasFile('imagem')) {
+        $requestData = $request->all();
+        $fileName = time().$request->file('imagem')->getClientOriginalName();
+        $path = $request->file('imagem')->storeAs('eventos', $fileName, 'public');
+        $requestData["imagem"] = '/storage/'.$path;
+        $event->imagem = $requestData["imagem"];
+    }    
 
+    if ($request->hasFile('imagem')) {
     $event->nome = $request->input('nome');
     $event->descricao = $request->input('descricao');
     $event->localizacao = $request->input('localizacao');
@@ -95,8 +99,16 @@ public function update(Request $request, Event $event)
     $event->numero_vagas = $request->input('numero_vagas');
     $event->vagas_disponiveis = $request->input('vagas_disponiveis');
     $event->imagem = $requestData["imagem"];
-
-    $event->save();
+    } else { 
+        $event->nome = $request->input('nome');
+        $event->descricao = $request->input('descricao');
+        $event->localizacao = $request->input('localizacao');
+        $event->data_inicio = $request->input('data_inicio');
+        $event->data_fim = $request->input('data_fim');
+        $event->numero_vagas = $request->input('numero_vagas');
+        $event->vagas_disponiveis = $request->input('vagas_disponiveis');
+    }
+        $event->save();
 
     return redirect()->route('events')->with('flash_message', 'Evento Atualizado!');
 }

@@ -312,7 +312,7 @@
                                 <label for="imagem" class="block text-gray-700 font-bold mb-2">
                                     Imagem
                                 </label>
-                                <x-input id="imagem" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="file" name="imagem" required />
+                                <x-input id="imagem" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="file" name="imagem" />
                                 <img src="{{ asset($event->imagem) }}" alt="" style="width: 100px; height: auto">
                             </div>
 
