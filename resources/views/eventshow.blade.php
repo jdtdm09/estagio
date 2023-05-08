@@ -243,34 +243,7 @@
                 <div class="container-fluid">
 
                     <!-- Content Row -->
-                    <style>
-                        .img-fluid {
-                            transform: scale(1);
-                            transition: transform 0.2s ease-in-out;
-                        }
-                        .img-fluid:hover {
-                            transform: scale(1.1);
-                        }
-                    </style>
-                    
-                    <div class="row">
-                        @foreach ($events as $event)
-                            <div class="col-lg-3 col-md-6 mb-4">
-                                <div class="card shadow mb-4">
-                                    <div class="card-header py-3">
-                                        <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">
-                                            <a href="{{ url('/eventshow/' . $event->id) }}">{{ $event->nome }}</a>
-                                        </h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="{{ url('/eventshow/' . $event->id) }}">
-                                            <img class="img-fluid mb-2" src="{{ asset($event->imagem) }}" alt="Evento">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
+                   
            
                     <!-- /.row -->
                 

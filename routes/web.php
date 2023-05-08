@@ -89,4 +89,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('eventDelete');
 });
 
+Route::get('/eventshow/{id}', function ($id) {
+    $event = Event::find($id);
+    return view('eventshow', compact('event'));
+});
+
+
 require __DIR__.'/auth.php';
