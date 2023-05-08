@@ -242,93 +242,52 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-
                     <!-- Content Row -->
                     <div class="row">
-
-                        <!-- Earnings (Monthly) Card Example -->
+                
                         @foreach ($events as $event)
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">{{ $event->nome }}</h5>
+                                </div>
                                 <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="evento">
-                                                <h1 class="text-center my-4" style="min-height: 63px; white-space: pre-wrap; font-size: 1.69rem; color: #333;">{{ $event->nome }}</h1>
-                                                <div class="evento-info" style="margin-top: 1rem;">
-                                                  <center>
-                                                    <img src="{{ asset($event->imagem) }}" style="width: 85%; height: auto;"/>
-                                                  </center>
-                                                </div>
-                                              </div>
-                                              
-                                              <style>
-                                                @media screen and (min-width: 1200px) {
-                                                  h1 {
-                                                    font-size: 2rem;
-                                                  }
-                                                }
-                                              </style>                                                                                  
-                                        </div>
-                                    </div>
+                                    <img class="img-fluid mb-2" src="{{ asset($event->imagem) }}" alt="Evento">
                                 </div>
                             </div>
                         </div>
                         @endforeach
-                        <div class="col-lg-6 mb-4">
+                
+                    </div>
+                    <!-- /.row -->
+                
+                </div>
+                <!-- /.container-fluid -->
+                
+                <!-- Logout Modal-->
+                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Deseja realmente sair?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Selecione "Sair" se estiver pronto para terminar a sua sessão atual.</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                            <div style="align-self:center">
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary">{{ __('Sair') }}</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- /.container-fluid -->
-
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Eventos 2023</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Deseja realmente sair?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Selecione "Sair" se estiver pronto para terminar a sua sessão atual.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <div style="align-self:center">
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="btn btn-primary">{{ __('Sair') }}</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="..\..\vendor\jquery\jquery.min.js"></script>
