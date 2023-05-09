@@ -15,8 +15,10 @@
     <script src="{{ asset('jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('bootstrap\js\bootstrap.bundle.min.js') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
 
-    <title>Eventos</title>
+    <title>Evento - {{$event->nome}}</title>
     
     <!-- Custom fonts for this template-->
     <link
@@ -24,7 +26,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -107,7 +109,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
+                    {{-- <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Procurar..."
@@ -118,7 +120,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> --}}
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -243,8 +245,125 @@
                 <div class="container-fluid">
 
                     <!-- Content Row -->
-                   
-           
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="text-primary display-4">{{ $event->nome }}</h1>
+                            </div>
+                        </div>
+                    
+                        <div class="row">
+                            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                                <img src="{{ asset($event->imagem) }}" alt="{{ $event->nome }}" class="img-fluid">
+                            </div>
+                    
+                            <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
+                                <p class="lead">{{ $event->descricao }}</p>
+                                <p><b>Vagas Disponíveis:</b> {{ $event->vagas_disponiveis }}</p>
+                                <p><b>Localização:</b> {{ $event->localizacao }}</p>
+                                <a href="#" class="btn btn-primary mt-3" data-toggle="modal" data-target="#participarModal">Participar do Evento</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                      
+                      <!-- Modal -->
+                      <div class="modal fade" id="participarModal" tabindex="-1" role="dialog" aria-labelledby="participarModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="participarModalLabel">Participar do Evento</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>O Preço para participar deste Evento é de 23€.</p>
+                                <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*Opções de Pagamento</strong></p>
+                                <select name="opcoes_pagamento" id="opcoes_pagamento" class="custom-dropdown adjust-z-index">
+                                  <option value="" selected disabled>Métodos de Pagamento</option>
+                                  <option value="cartao_credito">Cartão de Crédito</option>
+                                  <option value="mbway">Mbway</option>
+                                  <option value="paypal">PayPal</option>
+                                </select>
+                                <div id="cartao_credito_fields" style="display: none;">
+                                    <div class="form-group">
+                                        <label for="credit_card_number">Número do cartão de crédito</label>
+                                        <input type="text" class="form-control" id="credit_card_number" name="credit_card_number">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="credit_card_expiration">Data de validade</label>
+                                        <input type="text" class="form-control" id="credit_card_expiration" name="credit_card_expiration">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="credit_card_security_code">Código de segurança</label>
+                                        <input type="text" class="form-control" id="credit_card_security_code" name="credit_card_security_code">
+                                      </div>
+                                </div>
+                                <div id="mbway_fields" style="display: none;">
+                                    <div class="form-group">
+                                        <label for="mbway_phone_number">Número de telefone</label>
+                                        <input type="tel" class="form-control" id="mbway_phone_number" name="mbway_phone_number">
+                                    </div>
+                                </div>
+                                <div id="paypal_fields" style="display: none;">
+                                    <div class="form-group">
+                                        <label for="email_paypal">Email do PayPal:</label>
+                                        <input type="text" class="form-control" id="email_paypal" name="email_paypal">
+                                    </div>
+                                </div>
+                              </div> 
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                              <button type="button" class="btn btn-primary">Efetuar Pagamento</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        $(document).ready(function() {
+                          $("#opcoes_pagamento").change(function() {
+                            var selectedOption = $(this).val();
+                            $("#cartao_credito_fields").toggle(selectedOption == "cartao_credito");
+                            $("#mbway_fields").toggle(selectedOption == "mbway");
+                            $("#paypal_fields").toggle(selectedOption == "paypal");
+                          });
+                        });
+                      </script>
+                      
+                      <style>
+                      .custom-dropdown {
+                        background: #f2f2f2;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        box-shadow: none;
+                        color: #333;
+                        height: 34px;
+                        line-height: 34px;
+                        padding: 0 30px 0 10px;
+                        width: auto !important;
+                        -webkit-appearance: none;
+                        -moz-appearance: none;
+                        appearance: none;
+                        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2.295 3.705a1 1 0 0 1 1.414 0L6 6.293l2.291-2.292a1 1 0 0 1 1.414 1.414l-3 3a1 1 0 0 1-1.414 0l-3-3a1 1 0 0 1 0-1.414z' fill='%23333'/%3E%3C/svg%3E");
+                        background-repeat: no-repeat;
+                        background-position: right 10px center;
+                      }
+                      
+                      .custom-dropdown:hover, .custom-dropdown:focus {
+                        border: 1px solid #66afe9;
+                        box-shadow: none;
+                        outline: none;
+                      }
+                      
+                      .custom-dropdown option {
+                        background-color: #f2f2f2;
+                        color: #333;
+                      }
+                      </style>
+                      
+                      
+                                           
                     <!-- /.row -->
                 
                 </div>
