@@ -250,7 +250,7 @@
                             <div class="col-lg-4">
                               <div class="card mb-4">
                                 <div class="card-body text-center">
-                                    <img src="{{ $user->avatar ? '/storage/'.$user->avatar : '/img/undraw_profile.svg' }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                                    <img src="{{ $user->avatar ? '/storage/'.$user->avatar : '/img/undraw_profile.svg' }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">    
                                     <h5 class="my-3">
                                     @auth
                                     {{ Auth::user()->name }}
