@@ -94,5 +94,9 @@ Route::get('/eventshow/{id}', function ($id) {
     return view('eventshow', compact('event'));
 });
 
+Route::get('/payments', function () {
+    return view('payments');
+});
+
 
 require __DIR__.'/auth.php';

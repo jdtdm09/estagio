@@ -280,7 +280,7 @@
                               </button>
                             </div>
                             <div class="modal-body">
-                                <p>O preço para participar deste evento é de 23€.</p>
+                                <p>O preço para participar deste evento é de <strong>23€</strong>.</p>
                                 <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   *Opções de Pagamento:</strong></p>
                                 <form>
                                     <label style="display: block;">
@@ -295,45 +295,23 @@
                                         <input type="radio" name="opcoes_pagamento" value="paypal">
                                         <img src="data:image/png;base64,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" alt="Logo PayPal" width="70">
                                     </label>
+                                    <br/>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-primary" onclick="redirectToPayment()">Efetuar Pagamento</button>
+                                    </div>
+                                    
+                                    <script>
+                                        function redirectToPayment() {
+                                            var selectedPaymentMethod = document.querySelector('input[name="opcoes_pagamento"]:checked');
+                                            
+                                            if (selectedPaymentMethod) {
+                                                var paymentMethod = selectedPaymentMethod.value;
+                                                window.location.href = '/payments?metodo=' + paymentMethod;
+                                            }
+                                        }
+                                    </script>
                                 </form>
-
-                                  
-                                {{-- <select name="opcoes_pagamento" id="opcoes_pagamento" class="custom-dropdown adjust-z-index">
-                                  <option value="" selected disabled>Métodos de Pagamento</option>
-                                  <option value="cartao_credito">Cartão de Crédito</option>
-                                  <option value="mbway">Mbway</option>
-                                  <option value="paypal">PayPal</option>
-                                </select> --}}
-                                {{-- <div id="cartao_credito_fields" style="display: none;">
-                                    <div class="form-group">
-                                        <label for="credit_card_number">Número do cartão de crédito</label>
-                                        <input type="text" class="form-control" id="credit_card_number" name="credit_card_number">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="credit_card_expiration">Data de validade</label>
-                                        <input type="text" class="form-control" id="credit_card_expiration" name="credit_card_expiration">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="credit_card_security_code">Código de segurança</label>
-                                        <input type="text" class="form-control" id="credit_card_security_code" name="credit_card_security_code">
-                                      </div>
-                                </div> --}}
-                                <div id="mbway_fields" style="display: none;">
-                                    <div class="form-group">
-                                        <label for="mbway_phone_number">Número de telefone</label>
-                                        <input type="tel" class="form-control" id="mbway_phone_number" name="mbway_phone_number">
-                                    </div>
-                                </div>
-                                <div id="paypal_fields" style="display: none;">
-                                    <div class="form-group">
-                                        <label for="email_paypal">Email do PayPal:</label>
-                                        <input type="text" class="form-control" id="email_paypal" name="email_paypal">
-                                    </div>
-                                </div>
-                              </div> 
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                              <button type="button" class="btn btn-primary">Efetuar Pagamento</button>
                             </div>
                           </div>
                         </div>
