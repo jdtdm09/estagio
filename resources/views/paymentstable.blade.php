@@ -91,7 +91,7 @@
                         <h6 class="collapse-header">Gerir:</h6>
                         <a class="collapse-item {{ strpos($currentUrl, 'events') !== false ? 'active' : '' }}" href="{{ route('events') }}">Eventos</a>
                         <a class="collapse-item {{ strpos($currentUrl, 'users') !== false ? 'active' : '' }}" href="{{ route('users') }}">Utilizadores</a>
-                        <a class="collapse-item {{ strpos($currentUrl, 'pagamentos') !== false ? 'active' : '' }}" href="{{ route('paymentstable') }}">Pagamentos</a>
+                        <a class="collapse-item {{ strpos($currentUrl, 'paymentstable') !== false ? 'active' : '' }}" href="{{ route('paymentstable') }}">Pagamentos</a>
                     </div>
                 </div>
             </li>

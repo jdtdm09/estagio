@@ -24,11 +24,36 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
 <body id="page-top">
+    @if(session('message'))
+    <div class="alert alert-danger" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+        {{ session('message') }}
+    </div>
+
+    <script>
+        setTimeout(function() {
+            document.querySelector('.alert').remove();
+        }, 3500); // 3500 milliseconds = 3.5 seconds
+    </script>
+    @endif
+
+    @if(session('mensagem'))
+    <div class="success-message" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #dff0d8; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); z-index: 9999;">
+        <p>{{ session('mensagem') }}</p>
+    </div>
+
+    <script>
+        setTimeout(function() {
+            document.querySelector('.success-message').remove();
+        }, 3500); // 3500 milliseconds = 3,5 seconds
+    </script>
+    @endif
+
+
 
     <!-- Page Wrapper -->
     <div id="wrapper">

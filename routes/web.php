@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Profile\AvatarController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
@@ -105,6 +106,9 @@ Route::get('/eventshow/{id}', function ($id) {
 Route::get('/payments', function () {
     return view('payments');
 });
+
+Route::post('/payments/{evento}', [PaymentController::class, 'store'])->name('paymentProcess');
+
 
 
 require __DIR__.'/auth.php';

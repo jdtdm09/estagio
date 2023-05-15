@@ -307,7 +307,9 @@
                                             
                                             if (selectedPaymentMethod) {
                                                 var paymentMethod = selectedPaymentMethod.value;
-                                                window.location.href = '/payments?metodo=' + paymentMethod;
+                                                var url = window.location.href;
+                                                var evento = parseInt(url.match(/\/(\d+)$/)[1]);
+                                                window.location.href = '/payments?metodo=' + paymentMethod + '&evento=' + evento;
                                             }
                                         }
                                     </script>
