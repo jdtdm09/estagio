@@ -91,7 +91,7 @@
                         <h6 class="collapse-header">Gerir:</h6>
                         <a class="collapse-item {{ strpos($currentUrl, 'events') !== false ? 'active' : '' }}" href="{{ route('events') }}">Eventos</a>
                         <a class="collapse-item {{ strpos($currentUrl, 'users') !== false ? 'active' : '' }}" href="{{ route('users') }}">Utilizadores</a>
-                        <a class="collapse-item {{ strpos($currentUrl, 'pagamentos') !== false ? 'active' : '' }}" href="#">Pagamentos</a>
+                        <a class="collapse-item {{ strpos($currentUrl, 'pagamentos') !== false ? 'active' : '' }}" href="{{ route('paymentstable') }}">Pagamentos</a>
                     </div>
                 </div>
             </li>
@@ -287,6 +287,7 @@
                                             <th>Data Fim</th>
                                             <th>Número de Vagas</th>
                                             <th>Vagas Disponíveis</th>
+                                            <th>Preço</th>
                                             <th>Opções</th>
                                         </tr>
                                     </thead>
@@ -301,6 +302,7 @@
                                                     <td>{{ $event->data_fim }}</td>
                                                     <td>{{ $event->numero_vagas }}</td>
                                                     <td>{{ $event->vagas_disponiveis }}</td>
+                                                    <td>{{ $event->preco }}</td>
                                                     <td style="text-align: center;">
                                                         <div style="display: flex; flex-direction: row; justify-content: center;">
                                                             <a href="{{ route('eventEdit', ['id' => $event->id]) }}"><i class="fa-solid fa-pen" style="color: #6080eb;"></i></a>

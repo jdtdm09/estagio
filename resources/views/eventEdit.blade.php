@@ -306,6 +306,15 @@
                                 </label>
                                 <x-input id="vagas_disponiveis" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" name="vagas_disponiveis" :value="$event->vagas_disponiveis" required />
                             </div>
+
+                            <!-- Preço -->
+                            <div class="mt-4">
+                                <label for="preco" class="block text-gray-700 font-bold mb-2">
+                                    Preço
+                                </label>
+                                <input id="preco" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" pattern="\d+(\.\d{1,2})?" name="preco" value="{{ $event->preco }}" required />
+                            </div>                            
+
                             
                             <!-- Imagem -->
                             <div class="mt-4">

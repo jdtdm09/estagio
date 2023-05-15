@@ -44,6 +44,7 @@ class EventController extends Controller
         'numero_vagas' => 'required|integer',
         'vagas_disponiveis' => 'required|integer',
         'imagem' => 'required|image',
+        'preco' => 'required|decimal'
     ]);
 
     $event = new Event([
@@ -55,6 +56,7 @@ class EventController extends Controller
         'numero_vagas' => $request->input('numero_vagas'),
         'vagas_disponiveis' => $request->input('vagas_disponiveis'),
         'imagem' => $request->input('imagem'),
+        'preco' => $request->input('preco'),
     ]);
 
     $event->save();
@@ -80,6 +82,7 @@ public function update(Request $request, Event $event)
         'numero_vagas' => 'required|integer',
         'vagas_disponiveis' => 'required|integer',
         'imagem' => 'image',
+        'preco' => 'required|deciaml',
     ]);
 
     if ($request->hasFile('imagem')) {
@@ -99,6 +102,7 @@ public function update(Request $request, Event $event)
     $event->numero_vagas = $request->input('numero_vagas');
     $event->vagas_disponiveis = $request->input('vagas_disponiveis');
     $event->imagem = $requestData["imagem"];
+    $event->preco = $request->input('preco');
     } else { 
         $event->nome = $request->input('nome');
         $event->descricao = $request->input('descricao');
@@ -107,6 +111,7 @@ public function update(Request $request, Event $event)
         $event->data_fim = $request->input('data_fim');
         $event->numero_vagas = $request->input('numero_vagas');
         $event->vagas_disponiveis = $request->input('vagas_disponiveis');
+        $event->preco= $request->input('preco');
     }
         $event->save();
 

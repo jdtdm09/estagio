@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('numero_vagas');
             $table->integer('vagas_disponiveis');
             $table->string('imagem');
+            $table->decimal('preco');
             $table->timestamps();
         });
     }

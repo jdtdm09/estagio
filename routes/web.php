@@ -7,6 +7,7 @@ use App\Http\Controllers\Profile\AvatarController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Event;
+use App\Models\Payment;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
         $events = event::all();
         return view('events', compact('events'));
     })->name('events');
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/paymentstable', function () {
+        $payments = Payment::all();
+        return view('paymentstable', compact('payments'));
+    })->name('paymentstable');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

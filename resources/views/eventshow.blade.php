@@ -280,7 +280,7 @@
                               </button>
                             </div>
                             <div class="modal-body">
-                                <p>O preço para participar deste evento é de <strong>23€</strong>.</p>
+                                <p>O preço para participar deste evento é de <strong>{{ $event->preco }}€</strong>.</p>
                                 <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   *Opções de Pagamento:</strong></p>
                                 <form>
                                     <label style="display: block;">

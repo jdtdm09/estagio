@@ -17,6 +17,7 @@ class Event extends Model
         'data_fim',
         'numero_vagas',
         'vagas_disponiveis',
-        'imagem'
+        'imagem',
+        'preco'
     ];
 }

@@ -18,8 +18,7 @@
     <script src="{{ asset('jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('bootstrap\js\bootstrap.bundle.min.js') }}"></script>
     
-    
-    <script>
+     <script>
         $(document).ready(function () {
             $('#dataTable').DataTable({
                 "language": {
@@ -29,16 +28,20 @@
         });
     </script>
 
-    <title>Eventos - Gestão Utilizadores</title>
+    
+    <title>Eventos - Gestão de Pagamentos</title>
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -92,9 +95,10 @@
                     </div>
                 </div>
             </li>
+            
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            <hr class="sidebar-divider">
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -168,50 +172,50 @@
                                 <!-- Counter - Alerts -->
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
+                             <!-- Dropdown - Alerts -->
+                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="alertsDropdown">
+                             <h6 class="dropdown-header">
+                                 Notificações
+                             </h6>
+                             <a class="dropdown-item d-flex align-items-center" href="#">
+                                 <div class="mr-3">
+                                     <div class="icon-circle bg-primary">
+                                         <i class="fas fa-file-alt text-white"></i>
+                                     </div>
+                                 </div>
+                                 <div>
+                                     <div class="small text-gray-500">Abril 12, 2023</div>
+                                     <span class="font-weight-bold">Um novo Evento foi adicionado!</span>
+                                 </div>
+                             </a>
+                             <a class="dropdown-item d-flex align-items-center" href="#">
+                                 <div class="mr-3">
+                                     <div class="icon-circle bg-success">
+                                         <i class="fas fa-donate text-white"></i>
+                                     </div>
+                                 </div>
+                                 <div>
+                                     <div class="small text-gray-500">Abril 4, 2023</div>
+                                     Foram adicionados 13€ á sua Conta!
+                                 </div>
+                             </a>
+                             <a class="dropdown-item d-flex align-items-center" href="#">
+                                 <div class="mr-3">
+                                     <div class="icon-circle bg-warning">
+                                         <i class="fas fa-exclamation-triangle text-white"></i>
+                                     </div>
+                                 </div>
+                                 <div>
+                                     <div class="small text-gray-500">Março 22, 2023</div>
+                                     Alerta: Está com uma quantidade monetária baixa na sua Conta.
+                                 </div>
+                             </a>
+                             <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todas as Notificações</a>
+                         </div>
+                     </li>
+         
+                     <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
@@ -253,77 +257,13 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Utilizadores</h6>
-                            <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                     aria-labelledby="dropdownMenuLink">
-                                    <div class="dropdown-header">Opções:</div>
-                                    <a class="dropdown-item" href="{{ route('userCreate') }}">Adicionar</a>
-                                </div>
-                            </div>
-                        </div>          
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <style>
-                                            table, th, td {
-                                                border: 1px solid black;
-                                                border-collapse: collapse;
-                                                padding: 10px;
-                                                text-align: center;
-                                            }
-                                        </style>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Nome</th>
-                                            <th>Email</th>
-                                            <th>Nº de telefone</th>
-                                            <th>Data de nascimento</th>
-                                            <th>Gênero</th>
-                                            <th>Cargo</th>
-                                            <th>Opcões</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($users as $user)
-                                            <tr>
-                                                <td>{{ $user->id }}</td>
-                                                <td>{{ $user->name }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td>{{ $user->nTelemovel }}</td>
-                                                <td>{{ $user->dataNascimento }}</td>
-                                                <td>{{ $user->genero }}</td>
-                                                <td>{{ $user->cargo ? 'Admin' : 'Utilizador' }}</td>
-                                                <td style="text-align: center;">
-                                                    <div style="display: flex; flex-direction: row; justify-content: center;">
-                                                        <a href="{{ route('userEdit', ['id' => $user->id]) }}"><i class="fa-solid fa-pen" style="color: #6080eb;"></i></a>
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <form action="{{ route('userDelete', ['id' => $user->id]) }}" method="POST" onsubmit="return confirm('Tem a certeza que deseja eliminar este utilizador?')">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" style="border: none; background: none;"> <i class="fa-solid fa-trash" style="color: #c42727;"></i></button>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                
 
-                </div>
+
+
+
+
+
                 <!-- /.container-fluid -->
 
             </div>
