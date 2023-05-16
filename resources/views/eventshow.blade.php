@@ -263,7 +263,12 @@
                                 <p class="lead">{{ $event->descricao }}</p>
                                 <p><b>Localização:</b> {{ $event->localizacao }}</p>
                                 <p><b>Vagas Disponíveis:</b> {{ $event->vagas_disponiveis }}</p>
-                                <a class="btn btn-primary mt-3" data-toggle="modal" data-target="#participarModal">Participar do Evento</a>
+                                @if($event->payments()->where('user_id', Auth::user()->id)->where('event_id', $event->id)->exists())
+                                    <a class="btn btn-primary mt-3">Entrar no Evento</a>
+                                @else
+                                    <a class="btn btn-primary mt-3" data-toggle="modal" data-target="#participarModal">Participar do Evento</a>
+                                @endif
+
                             </div>
                         </div>
                     </div>

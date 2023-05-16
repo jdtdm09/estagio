@@ -13,6 +13,7 @@ class Payment extends Model
         'user_id',
         'event_id',
         'amount',
+        'method',
         'reference',
         'qrcode',
     ];

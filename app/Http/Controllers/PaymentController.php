@@ -16,6 +16,7 @@ class PaymentController extends Controller
 
     // Obtenha o ID do evento a partir dos parâmetros de URL
     $eventId = $request->route('evento');
+    $metodo = $request->route('metodo');
 
     $existingPayment = Payment::where('user_id', $userId)->where('event_id', $eventId)->first();
     if ($existingPayment) {
@@ -29,6 +30,12 @@ class PaymentController extends Controller
         // Trate o caso em que o evento não é encontrado, por exemplo, redirecionando ou exibindo uma mensagem de erro.
         return redirect()->route('events')->with('message', 'Evento não encontrado.');
     }
+
+    // Verifique se há vagas disponíveis
+    if ($event->vagas_disponiveis <= 0) {
+        return redirect()->route('dashboard')->with('message', 'Não há mais vagas disponíveis para este evento.');
+    }
+
     $amount = $event->preco;
 
     // Gere o código QR
@@ -41,12 +48,18 @@ class PaymentController extends Controller
         'user_id' => $userId,
         'event_id' => $eventId,
         'amount' => $amount,
+        'method' => $metodo,
         'reference' => '981017123',
         'qrcode' => $qrcode
     ]);
 
+    // Decrementar o número de vagas disponíveis
+    $event->vagas_disponiveis -= 1;
+    $event->save();
     // Salve o pagamento na base de dados
     $pagamento->save();
+
+
 
     // Redirecione ou retorne a resposta adequada, por exemplo:
     return redirect()->route('dashboard')->with('mensagem', 'Bilhete comprado com sucesso.');

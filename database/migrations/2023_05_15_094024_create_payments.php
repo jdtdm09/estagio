@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('event_id');
             $table->decimal('amount', 8, 2);
+            $table->string('method');
             $table->string('reference');
             $table->string('qrcode');
             $table->timestamps();

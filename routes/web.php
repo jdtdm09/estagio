@@ -107,7 +107,7 @@ Route::get('/payments', function () {
     return view('payments');
 });
 
-Route::post('/payments/{evento}', [PaymentController::class, 'store'])->name('paymentProcess');
+Route::post('/payments/{evento}/{metodo}', [PaymentController::class, 'store'])->name('paymentProcess');
 
 
 

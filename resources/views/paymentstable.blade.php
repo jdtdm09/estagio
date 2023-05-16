@@ -282,6 +282,7 @@
                                         <th>ID</th>
                                         <th>ID Utilizador</th>
                                         <th>ID Evento</th>
+                                        <th>Método</th>
                                         <th>Quantidade</th>
                                         <th>Referência</th>
                                     </tr>
@@ -292,6 +293,7 @@
                                             <td><?= $payment->id ?></td>
                                             <td><?= $payment->user_id ?></td>
                                             <td><?= $payment->event_id ?></td>
+                                            <td><?= $payment->method ?></td>
                                             <td><?= $payment->amount ?></td>
                                             <td><?= $payment->reference ?></td>
                                         </tr>
