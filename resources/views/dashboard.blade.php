@@ -100,7 +100,7 @@
                         <h6 class="collapse-header">Gerir:</h6>
                         <a class="collapse-item" href="{{ route('events') }}">Eventos</a>
                         <a class="collapse-item" href="{{ route('users') }}">Utilizadores</a>
-                        <a class="collapse-item">Pagamentos</a>
+                        <a class="collapse-item" href="{{ route('paymentstable')}}">Pagamentos</a>
                     </div>
                 </div>
             </li>
