@@ -161,7 +161,6 @@
                                     eventCards[i].style.display = "none"; // Oculta o evento que não corresponde
                                 }
                             }
-    
                             if (searchTerm === "") {
                                 // Se a pesquisa estiver vazia, exibe todos os eventos novamente
                                 allEvents.forEach(function(event) {

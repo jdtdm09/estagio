@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\Profile\AvatarController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
@@ -109,6 +110,7 @@ Route::get('/payments', function () {
 
 Route::post('/payments/{evento}/{metodo}', [PaymentController::class, 'store'])->name('paymentProcess');
 
+Route::get('/generate-pdf/{eventId}', [PDFController::class, 'generatePDF'])->name('generatePDF');
 
 
 require __DIR__.'/auth.php';

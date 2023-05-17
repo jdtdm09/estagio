@@ -62,7 +62,13 @@ class PaymentController extends Controller
 
 
     // Redirecione ou retorne a resposta adequada, por exemplo:
-    return redirect()->route('dashboard')->with('mensagem', 'Bilhete comprado com sucesso.');
+    /*
+    !Para ja tiramos isto para mandar para o pdf e depois do pdf é que vai para a dashboard
+    * return redirect()->route('dashboard')->with('mensagem', 'Bilhete comprado com sucesso.');
+     */
+
+     return redirect()->route('generatePDF', ['eventId' => $eventId]);
+    
 }
 
 }
