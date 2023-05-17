@@ -132,11 +132,9 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <form id="search-form" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Procurar..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                            <input id="search-input" type="text" class="form-control bg-light border-0 small" placeholder="Procurar..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -144,6 +142,37 @@
                             </div>
                         </div>
                     </form>
+
+                    <script>
+                        // Armazena todos os eventos em uma variável para restaurá-los posteriormente
+                        var allEvents = Array.from(document.querySelectorAll(".card"));
+                    
+                        document.getElementById("search-input").addEventListener("input", function() {
+                            var searchTerm = this.value.toLowerCase();
+                            var eventContainer = document.getElementById("event-container");
+                            var eventCards = eventContainer.querySelectorAll(".card");
+                    
+                            for (var i = 0; i < eventCards.length; i++) {
+                                var eventName = eventCards[i].querySelector("h5").textContent.toLowerCase();
+                    
+                                if (eventName.includes(searchTerm)) {
+                                    eventCards[i].style.display = "block"; // Exibe o evento correspondente
+                                } else {
+                                    eventCards[i].style.display = "none"; // Oculta o evento que não corresponde
+                                }
+                            }
+    
+                            if (searchTerm === "") {
+                                // Se a pesquisa estiver vazia, exibe todos os eventos novamente
+                                allEvents.forEach(function(event) {
+                                    event.style.display = "block";
+                                });
+                            }
+                        });
+                    </script>
+                    
+                    
+                                       
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -278,7 +307,7 @@
                         }
                     </style>
                     
-                    <div class="row">
+                    <div id="event-container" class="row">
                         @foreach ($events as $event)
                             <div class="col-lg-3 col-md-6 mb-4">
                                 <div class="card shadow mb-4">
