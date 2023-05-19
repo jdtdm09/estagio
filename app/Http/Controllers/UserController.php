@@ -14,7 +14,11 @@ class UserController extends Controller
 {
     $users = User::all();
     
-    return view('listUsers', compact('users'));
+    // return view('listUsers', compact('users'));
+    return [
+        "status" => 1,
+        "data" => $users
+    ];
 }
 
     public function create()
