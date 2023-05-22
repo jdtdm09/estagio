@@ -307,15 +307,11 @@
 
             
                             <div class="flex items-center justify-end mt-4">
-                                <x-button class="ml-4">
+                                <x-button class="ml-4 btn btn-primary">
                                     {{ __('Atualizar') }}
                                 </x-button>
                             </div>
                         </form>
-            
-            
-            
-            
                     </div>
                 </div>
             </div>

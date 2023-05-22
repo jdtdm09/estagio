@@ -323,12 +323,11 @@
                             </div>
                           
                             <div class="flex items-center justify-end mt-4">
-                                <x-button class="ml-4">
-                                    {{ __('Criar') }}
+                                <x-button class="ml-4 btn btn-primary">
+                                    <i class="fas fa-plus"></i> {{ __('Criar') }}
                                 </x-button>
-                            </div>
+                            </div>                            
                           </form>
-
                     </div>
                 </div>
             </div>
