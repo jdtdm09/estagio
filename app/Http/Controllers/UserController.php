@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -91,6 +92,31 @@ class UserController extends Controller
     return redirect()->route('users');
 }
 
+    public function login(Request $request)
+{
+    $credentials = $request->only('email', 'password');
+
+    if (Auth::attempt($credentials)) {
+        // Authentication successful
+        $user = Auth::user();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Logged in successfully',
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                // Include any other user information you want to share
+            ]
+        ]);
+    } else {
+        // Authentication failed
+        return response()->json([
+            'success' => false,
+            'message' => 'Invalid credentials'
+        ], 401);
+    }
+}
 
 
 }

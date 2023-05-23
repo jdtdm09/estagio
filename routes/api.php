@@ -23,3 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('events', EventController::class);
 
 Route::resource('users', UserController::class);
+
+Route::post('/login', [UserController::class, 'login']);
