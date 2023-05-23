@@ -260,12 +260,12 @@
                             </div>
 
                             <!-- Descrição -->
-                            <div class="mt-4">
-                                <label for="descricao" class="block text-gray-700 font-bold mb-2">
+                            <div class="mt-4 flex items-center">
+                                <label for="descricao" class="block text-gray-700 font-bold mb-2 flex items-center justify-center">
                                     Descrição
                                 </label>
-                                <x-input id="descricao" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="descricao" :value="$event->descricao" required />
-                            </div>
+                                <textarea id="descricao" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="4" cols="50" name="descricao" required>{{ $event->descricao }}</textarea>
+                            </div>                            
 
                             <!-- Localização -->
                             <div class="mt-4">
