@@ -26,9 +26,13 @@
     <h1>{{ $title }}</h1>
     <p>{{ $date }}</p>
     <p>Isto é o bilhete para o evento: {{ $name }}</p>
-        <div class="qrcode">
-            Eventualmente isto vai ser um QR code.
-            {{ $qrcode }}
+        <div class="qrcode" style="display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center;">
+            QrCode para a entrado no Evento.
+            </br>
+            </br>
+            <div style="position: absolute; top:35%; left:42.2%; transform:translate(-50%,-50%); width:20%; height:auto;"> 
+                {!! DNS2D::getBarcodeHTML("$qrcode", 'QRCODE') !!}
+            </div>
         </div>
     </div>
 </body>
