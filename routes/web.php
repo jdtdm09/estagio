@@ -112,5 +112,7 @@ Route::post('/payments/{evento}/{metodo}', [PaymentController::class, 'store'])-
 
 Route::get('/generate-pdf/{eventId}', [PDFController::class, 'generatePDF'])->name('generatePDF');
 
+Route::post('/events/{event}/check-qr-code', [EventController::class, 'checkQrCode'])->name('events.checkQrCode');
+
 
 require __DIR__.'/auth.php';

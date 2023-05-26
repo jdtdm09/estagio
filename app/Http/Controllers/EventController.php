@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class EventController extends Controller
 {
@@ -123,8 +126,12 @@ public function update(Request $request, Event $event)
     public function destroy($id)
 {
     $event = Event::find($id);
-    $event->delete();
 
+    // Excluir os pagamentos relacionados ao evento
+    Payment::where('event_id', $event->id)->delete();
+
+    $event->delete();
+    
     return redirect()->route('events');
 }
 
@@ -134,5 +141,19 @@ public function update(Request $request, Event $event)
         "status" => 1,
         "data" => $event
     ];
+}
+
+public function checkQrCode($event)
+{
+    $userid = auth()->user()->id;
+    $eventinfo = Event::find($event);
+    $eventid = $eventinfo->id;
+    $payment = Payment::where('user_id', $userid)->where('event_id', $eventid)->first();
+
+    if ($payment && $payment->qrcode === request()->input('content')) {
+        return response()->json(['message' => 'Bilhete Aceite']);
+    } else {
+        return response()->json(['message' => 'Bilhete Recusado']);
+    }
 }
 }

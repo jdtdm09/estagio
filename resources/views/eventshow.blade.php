@@ -5,6 +5,7 @@
 <head>
 
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -17,6 +18,11 @@
     <script src="{{ asset('bootstrap\js\bootstrap.bundle.min.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+
+    <style>
+        #preview{    width:450px;    height: auto;    margin:0px auto; align-self: center; }
+    </style>
 
     <title>Evento - {{$event->nome}}</title>
     
@@ -31,6 +37,29 @@
 </head>
 
 <body id="page-top">
+    @if(session('message'))
+    <div class="alert alert-danger" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+        {{ session('message') }}
+    </div>
+
+    <script>
+        setTimeout(function() {
+            document.querySelector('.alert').remove();
+        }, 3500); // 3500 milliseconds = 3.5 seconds
+    </script>
+    @endif
+
+    @if(session('mensagem'))
+    <div class="success-message" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #dff0d8; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); z-index: 9999;">
+        <p>{{ session('mensagem') }}</p>
+    </div>
+
+    <script>
+        setTimeout(function() {
+            document.querySelector('.success-message').remove();
+        }, 3500); // 3500 milliseconds = 3,5 seconds
+    </script>
+    @endif
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -264,11 +293,12 @@
                                 <p><b>Localização:</b> {{ $event->localizacao }}</p>
                                 <p><b>Vagas Disponíveis:</b> {{ $event->vagas_disponiveis }}</p>
                                 @if($event->payments()->where('user_id', Auth::user()->id)->where('event_id', $event->id)->exists())
-                                    <a class="btn btn-primary mt-3">Entrar no Evento</a>
+                                    <a class="btn btn-primary mt-3" data-toggle="modal" data-target="#verificarModal">Entrar no Evento</a>
+                                @elseif($event->where('id', $event->id)->first()->vagas_disponiveis == 0)
+                                    <a class="btn btn-danger mt-3">Evento Lotado</a>
                                 @else
                                     <a class="btn btn-primary mt-3" data-toggle="modal" data-target="#participarModal">Participar do Evento</a>
                                 @endif
-
                             </div>
                         </div>
                     </div>
@@ -323,6 +353,80 @@
                           </div>
                         </div>
                       </div>
+                      <div class="modal fade" id="verificarModal" tabindex="-1" role="dialog" aria-labelledby="verificarModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="verificarModalLabel">Entrar no Evento</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                <video id="preview"></video>
+                                <script type="text/javascript">
+                                    let eventId = window.location.href.split("/").pop();
+                                    let scanner = new Instascan.Scanner({
+                                      video: document.getElementById("preview"),
+                                    });
+                              
+                                    scanner.addListener("scan", function (content) {
+                                        console.log(content);
+                                        fetch("/events/" + eventId + "/check-qr-code", {
+                                            method: "POST",
+                                            headers: {
+                                                "Content-Type": "application/json",
+                                                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                                            },
+                                            body: JSON.stringify({
+                                                content: content,
+                                            }),
+                                        })
+                                        .then(function(response) {
+                                            if (response.ok) {
+                                            return response.json();
+                                            } else {
+                                            throw new Error("Request failed.");
+                                            }
+                                        })
+                                        .then(function(data) {
+                                            if (data.message === 'Bilhete Aceite') {
+                                            alert("Bilhete Aceite");
+                                            } else {
+                                            alert("Bilhete Não Aceite");
+                                            }
+                                            window.location.href = "{{ route('dashboard') }}";
+                                        })
+                                        .catch(function(error) {
+                                            // Handle the error response
+                                            console.error(error);
+                                        });
+                                    });
+                              
+                                    Instascan.Camera.getCameras()
+                                      .then(function (cameras) {
+                                        if (cameras.length > 0) {
+                                          scanner.start(cameras[0]);
+                                        } else {
+                                          console.error("No cameras found.");
+                                        }
+                                      })
+                                      .catch(function (e) {
+                                        console.error(e);
+                                      });
+                                  </script>
+                                <div class="btn-group btn-group-toggle mb-5" data-toggle="buttons">
+                                    <label class="btn btn-primary active">
+                                      <input type="radio" name="options" value="1" autocomplete="off" checked> Front Camera
+                                    </label>
+                                    <label class="btn btn-secondary">
+                                      <input type="radio" name="options" value="2" autocomplete="off"> Back Camera
+                                    </label>
+                                  </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                       <script>
                         $(document).ready(function() {
                           $("#opcoes_pagamento").change(function() {
@@ -352,6 +456,8 @@
                         background-repeat: no-repeat;
                         background-position: right 10px center;
                       }
+
+                      
                       
                       .custom-dropdown:hover, .custom-dropdown:focus {
                         border: 1px solid #66afe9;
