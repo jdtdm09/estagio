@@ -9,6 +9,38 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
+
+    public function index()
+{
+
+    $payments = Payment::all();
+
+    return [
+        "status" => 1,
+        "data" => $payments
+    ];
+
+}
+
+    public function findSpecific($userId, $eventId)
+{
+
+    $specificPayment = Payment::where('user_id', $userId)->where('event_id', $eventId)->first();
+
+    if ($specificPayment) {
+        return [
+            "status" => 1,
+            "data" => $specificPayment
+        ];
+    } else {
+        return [
+            "status" => 2,
+            "message" => "Não encontrado"
+        ];
+    }
+
+}
+
     public function store(Request $request): RedirectResponse
 {
     // Obtenha o ID do usuário autenticado

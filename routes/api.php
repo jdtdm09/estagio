@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('events', EventController::class);
 
 Route::resource('users', UserController::class);
+
+Route::resource('payments', PaymentController::class);
+
+Route::get('payment/{userId}/{eventId}', [PaymentController::class, 'findSpecific']);
 
 Route::post('/login', [UserController::class, 'login']);
