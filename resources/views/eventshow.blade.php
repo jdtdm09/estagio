@@ -21,7 +21,7 @@
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
 
     <style>
-        #preview{    width:450px;    height: auto;    margin:0px auto; align-self: center; }
+        #preview{    width: 100%;    height: auto;    margin:0px auto; align-self: center; }
     </style>
 
     <title>Evento - {{$event->nome}}</title>
@@ -285,7 +285,7 @@
                                 <p><b>Localização:</b> {{ $event->localizacao }}</p>
                                 <p><b>Vagas Disponíveis:</b> {{ $event->vagas_disponiveis }}</p>
                                 @if($event->payments()->where('user_id', Auth::user()->id)->where('event_id', $event->id)->exists())
-                                    <a class="btn btn-primary mt-3" data-toggle="modal" data-target="#verificarModal">Entrar no Evento</a>
+                                    <a class="btn btn-primary mt-3" data-toggle="modal" data-target="#verificarModal" id="btn-entrar">Entrar no Evento</a>
                                 @elseif($event->where('id', $event->id)->first()->vagas_disponiveis == 0)
                                     <a class="btn btn-danger mt-3">Evento Lotado</a>
                                 @else
@@ -357,12 +357,13 @@
                             <div class="modal-body">
                                 <video id="preview"></video>
                                 <script type="text/javascript">
-                                    let eventId = window.location.href.split("/").pop();
-                                    let scanner = new Instascan.Scanner({
-                                      video: document.getElementById("preview"),
-                                    });
-                              
-                                    scanner.addListener("scan", function (content) {
+                                    document.getElementById("btn-entrar").addEventListener("click", function() {
+                                      let eventId = window.location.href.split("/").pop();
+                                      let scanner = new Instascan.Scanner({
+                                        video: document.getElementById("preview"),
+                                      });
+                                  
+                                      scanner.addListener("scan", function(content) {
                                         console.log(content);
                                         fetch("/events/" + eventId + "/check-qr-code", {
                                             method: "POST",
@@ -376,16 +377,16 @@
                                         })
                                         .then(function(response) {
                                             if (response.ok) {
-                                            return response.json();
+                                              return response.json();
                                             } else {
-                                            throw new Error("Request failed.");
+                                              throw new Error("Request failed.");
                                             }
                                         })
                                         .then(function(data) {
                                             if (data.message === 'Bilhete Aceite') {
-                                            alert("Bilhete Aceite");
+                                              alert("Bilhete Aceite");
                                             } else {
-                                            alert("Bilhete Não Aceite");
+                                              alert("Bilhete Não Aceite");
                                             }
                                             window.location.href = "{{ route('dashboard') }}";
                                         })
@@ -393,28 +394,22 @@
                                             // Handle the error response
                                             console.error(error);
                                         });
-                                    });
-                              
-                                    Instascan.Camera.getCameras()
-                                      .then(function (cameras) {
-                                        if (cameras.length > 0) {
-                                          scanner.start(cameras[0]);
-                                        } else {
-                                          console.error("No cameras found.");
-                                        }
-                                      })
-                                      .catch(function (e) {
-                                        console.error(e);
                                       });
+                                  
+                                      Instascan.Camera.getCameras()
+                                        .then(function(cameras) {
+                                          if (cameras.length > 0) {
+                                            scanner.start(cameras[0]);
+                                          } else {
+                                            console.error("No cameras found.");
+                                          }
+                                        })
+                                        .catch(function(e) {
+                                          console.error(e);
+                                        });
+                                    });
                                   </script>
-                                <div class="btn-group btn-group-toggle mb-5" data-toggle="buttons">
-                                    <label class="btn btn-primary active">
-                                      <input type="radio" name="options" value="1" autocomplete="off" checked> Front Camera
-                                    </label>
-                                    <label class="btn btn-secondary">
-                                      <input type="radio" name="options" value="2" autocomplete="off"> Back Camera
-                                    </label>
-                                  </div>
+                                  <br/>
                             </div>
                           </div>
                         </div>
