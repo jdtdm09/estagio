@@ -23,7 +23,8 @@ use App\Models\Payment;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $events = Event::all();
+    return view('welcome', compact('events'));
 });
 
 Route::get('/dashboard', function () {

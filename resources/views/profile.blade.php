@@ -33,6 +33,7 @@
 
 <body id="page-top">
 
+
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -275,6 +276,7 @@
                                         @auth
                                         {{ Auth::user()->name }}
                                         @endauth</p>
+                                        <button data-toggle="modal" data-target="#mudarNome"><i class="fa-solid fa-pen" style="color: #6080eb;"></i></button>
                                     </div>
                                   </div>
                                   <hr>
@@ -299,6 +301,7 @@
                                           @auth
                                           {{ Auth::user()->genero }}
                                           @endauth</p>
+                                          <button data-toggle="modal" data-target="#mudarGenero"><i class="fa-solid fa-pen" style="color: #6080eb;"></i></button>
                                       </div>
                                   </div>
                                   <hr>
@@ -311,6 +314,7 @@
                                             @auth
                                             {{ Auth::user()->nTelemovel }}
                                             @endauth</p>
+                                            <button data-toggle="modal" data-target="#mudarTelemovel"><i class="fa-solid fa-pen" style="color: #6080eb;"></i></button>
                                       </div>
                                   </div>
                                   <hr>
@@ -368,13 +372,169 @@
                                             </div>
                                         </form>
                                     </div>
-                                  </div>                                  
+                                  </div>   
+                                  <hr>
+                                  <div class="row">
+                                    <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
+                                        @csrf
+                                        @method('delete')
+                            
+                                        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                            {{ __('Are you sure you want to delete your account?') }}
+                                        </h2>
+                            
+                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                            {{ __('Depois de a sua conta ser eliminada, todos os seus recursos e dados serão eliminados permanentemente. Antes de eliminar a sua conta, faça o download de todos os dados ou informações que deseja reter.') }}
+                                        </p>
+                            
+                                        <div class="mt-6">
+                                            <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
+                            
+                                            <x-text-input
+                                                id="password"
+                                                name="password"
+                                                type="password"
+                                                class="mt-1 block w-3/4"
+                                                placeholder="{{ __('Password') }}"
+                                            />
+                            
+                                            <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
+                                        </div>
+                                        <br />
+                                        <div class="mt-6 flex justify-end">
+                                            <x-secondary-button x-on:click="$dispatch('close')">
+                                                {{ __('Cancelar') }}
+                                            </x-secondary-button>
+                            
+                                            <x-danger-button class="ml-3">
+                                                {{ __('Apagar Conta') }}
+                                            </x-danger-button>
+                                        </div>
+                                    </form>
+                                  </div>                               
                             </div>
                           </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <?
+            /**
+            * ! Modals para editar as informações do perfil
+            */
+            ?>
+                <?
+                /**
+                 * ? Nome
+                 */
+                ?>
+                <div class="modal fade" id="mudarNome" tabindex="-1" role="dialog" aria-labelledby="mudarNomeLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="mudarNomeLabel">Alteração do Nome:</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Insira o Nome para o qual pertenda mudar.</p>
+                            <form method="post" action="{{ route('profile.update') }}">
+                                @csrf
+                                @method('patch')
+
+                                <div>
+                                    <x-input-label for="name" :value="__('Nome')" />
+                                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                                </div>
+                                <br/>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary">Atualizar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <?
+                /**
+                 * ? Gênero
+                 */
+                ?>
+                <div class="modal fade" id="mudarGenero" tabindex="-1" role="dialog" aria-labelledby="mudarGeneroLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="mudarGeneroLabel">Alteração do Gênero:</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Insira o Gênero para o qual pertenda mudar.</p>
+                            <form method="post" action="{{ route('profile.update') }}">
+                                @csrf
+                                @method('patch')
+
+                                <div>
+                                    <x-input-label for="genero" />
+                                    <select id="genero" name="genero" class="form-control form-control-user" required autofocus>
+                                        <option value="" selected disabled>Selecione uma opção</option>
+                                        <option value="Masculino" <?php echo $user->genero === 'Masculino' ? 'selected' : ''; ?>>Masculino</option>
+                                        <option value="Feminino" <?php echo $user->genero === 'Feminino' ? 'selected' : ''; ?>>Feminino</option>
+                                        <option value="Outro" <?php echo $user->genero === 'Outro' ? 'selected' : ''; ?>>Outro</option>
+                                    </select>                                    
+                                    <x-input-error :messages="$errors->get('genero')" class="mt-2" />
+                                </div>
+                                <br/>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary">Atualizar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <?
+                /**
+                 * ? Número Telemóvel
+                 */
+                ?>
+                <div class="modal fade" id="mudarTelemovel" tabindex="-1" role="dialog" aria-labelledby="mudarTelemovelLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="mudarTelemovelLabel">Alteração do Nº Telemóvel:</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Insira o Nº Telemóvel para o qual pertenda mudar.</p>
+                            <form method="post" action="{{ route('profile.update') }}">
+                                @csrf
+                                @method('patch')
+
+                                <div>
+                                    <x-input-label for="nTelemovel" :value="__('nTelemovel')" />
+                                    <x-text-input id="nTelemovel" name="nTelemovel" type="text" class="mt-1 block w-full" :value="old('nTelemovel', $user->nTelemovel)" required autofocus autocomplete="nTelemovel" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('nTelemovel')" />
+                                </div>
+                                <br/>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary">Atualizar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
         </div>
             <!-- End of Main Content -->
 

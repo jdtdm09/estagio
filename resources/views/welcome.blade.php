@@ -50,9 +50,8 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('dashboard') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                <a class="nav-link">
+                    <span></span></a>
             </li>
 
             <!-- Sidebar Message -->
@@ -142,36 +141,36 @@
                                     </div>
                                 </form>
                             </div>
-
+                        </li>
+                    </ul>
                     
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <style>
-                        .img-fluid {
-                            transform: scale(1);
-                            transition: transform 0.2s ease-in-out;
-                        }
-                        .img-fluid:hover {
-                            transform: scale(1.1);
-                        }
-                    </style>
-                
                     <div id="event-container" class="row">
-                        @if(isset($events) && !empty($events))
+                        @if ($events)
                             @foreach ($events as $event)
                                 <div class="col-lg-3 col-md-6 mb-4">
                                     <div class="card shadow mb-4">
-                                        {{ $event->name }}
+                                        <div class="card-header py-3">
+                                            <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">
+                                                {{ $event->nome }}
+                                            </h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <img class="img-fluid mb-2" src="{{ asset($event->imagem) }}" alt="Evento">
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach
                         @else
-                            <p>Nenhum evento encontrado.</p>
+                            <p>Nenhum evento encontrado</p>
                         @endif
                     </div>
-                </div>                
+                </div>  
+            </div>
+        </div>              
                 
 
     <!-- Bootstrap core JavaScript-->
