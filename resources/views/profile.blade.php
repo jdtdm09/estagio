@@ -271,13 +271,14 @@
                                     <div class="col-sm-3">
                                       <p class="mb-0">Nome:</p>
                                     </div>
-                                    <div class="col-sm-9">
-                                      <p class="text-muted mb-0">
-                                        @auth
-                                        {{ Auth::user()->name }}
-                                        @endauth</p>
-                                        <button data-toggle="modal" data-target="#mudarNome"><i class="fa-solid fa-pen" style="color: #6080eb;"></i></button>
-                                    </div>
+                                    <div class="col-sm-9" style="display: flex; align-items: center;">
+                                        <p class="text-muted mb-0" style="flex-grow: 1;">
+                                          @auth
+                                          {{ Auth::user()->name }}
+                                          @endauth
+                                        </p>
+                                        <i class="fa-solid fa-pen" style="color: #6080eb; cursor: pointer;" data-toggle="modal" data-target="#mudarNome"></i>
+                                      </div>                                      
                                   </div>
                                   <hr>
                                   <div class="row">
@@ -296,26 +297,28 @@
                                     <div class="col-sm-3">
                                       <p class="mb-0">Gênero:</p>
                                     </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-muted mb-0">
+                                    <div class="col-sm-9" style="display: flex; align-items: center;">
+                                        <p class="text-muted mb-0" style="flex-grow: 1;">
                                           @auth
                                           {{ Auth::user()->genero }}
-                                          @endauth</p>
-                                          <button data-toggle="modal" data-target="#mudarGenero"><i class="fa-solid fa-pen" style="color: #6080eb;"></i></button>
-                                      </div>
+                                          @endauth
+                                        </p>
+                                        <i class="fa-solid fa-pen" style="color: #6080eb; cursor: pointer;" data-toggle="modal" data-target="#mudarGenero"></i>
+                                      </div>                                      
                                   </div>
                                   <hr>
                                   <div class="row">
                                     <div class="col-sm-3">
                                       <p class="mb-0">Nº Telemóvel:</p>
                                     </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-muted mb-0">
-                                            @auth
-                                            {{ Auth::user()->nTelemovel }}
-                                            @endauth</p>
-                                            <button data-toggle="modal" data-target="#mudarTelemovel"><i class="fa-solid fa-pen" style="color: #6080eb;"></i></button>
-                                      </div>
+                                    <div class="col-sm-9" style="display: flex; align-items: center;">
+                                        <p class="text-muted mb-0" style="flex-grow: 1;">
+                                          @auth
+                                          {{ Auth::user()->nTelemovel }}
+                                          @endauth
+                                        </p>
+                                        <i class="fa-solid fa-pen" style="color: #6080eb; cursor: pointer;" data-toggle="modal" data-target="#mudarTelemovel"></i>
+                                      </div>                                          
                                   </div>
                                   <hr>
                                   <div class="row">
@@ -339,26 +342,26 @@
                                             @csrf
                                             @method('put')
                                     
-                                            <div>
-                                                <x-input-label for="current_password" :value="__('Password Atual')" />
-                                                <x-text-input id="current_password" name="current_password" type="password" class="mt-1 block w-full" autocomplete="current-password" />
-                                                <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
+                                            <div class="d-flex align-items-center">
+                                                <x-input-label for="current_password" :value="__('Password Atual:')" class="mr-2" />
+                                                <x-text-input id="current_password" name="current_password" type="password" style="width: 180px;" class="mt-1 form-control" autocomplete="current-password" />
+                                                <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-1" /> 
+                                            </div>                                                                                                                                  
+                                                                                                                                 
+                                            <div class="d-flex">
+                                                <x-input-label for="password" :value="__('Nova Password:')" class="mr-2" />
+                                                <x-text-input id="password" name="password" type="password" style="width: 180px;" class="mt-1 form-control" autocomplete="new-password" />
+                                                <x-input-error :messages="$errors->updatePassword->get('password')" />
                                             </div>
                                     
-                                            <div>
-                                                <x-input-label for="password" :value="__('Nova Password')" />
-                                                <x-text-input id="password" name="password" type="password" class="mt-1 block w-full" autocomplete="new-password" />
-                                                <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
-                                            </div>
-                                    
-                                            <div>
-                                                <x-input-label for="password_confirmation" :value="__('Confirmar Password')" />
-                                                <x-text-input id="password_confirmation" name="password_confirmation" type="password" class="mt-1 block w-full" autocomplete="new-password" />
-                                                <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
+                                            <div class="d-flex">
+                                                <x-input-label for="password_confirmation" :value="__('Confirmar Password:')" class="mr-2" />
+                                                <x-text-input id="password_confirmation" name="password_confirmation" type="password" style="width: 180px;" class="mt-1 form-control" autocomplete="new-password" />
+                                                <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-1" />
                                             </div>
                                     
                                             <div class="flex items-center gap-4">
-                                                <x-primary-button class="ml-4 btn btn-primary">{{ __('Guardar') }}</x-primary-button>
+                                                <x-danger-button class="ml-4 btn btn-primary">{{ __('Guardar') }}</x-primary-button>
                                     
                                                 @if (session('status') === 'password-updated')
                                                     <p
@@ -380,33 +383,29 @@
                                         @method('delete')
                             
                                         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                                            {{ __('Are you sure you want to delete your account?') }}
+                                            {{ __('Tem a certeza que deseja excluir a sua conta?') }}
                                         </h2>
                             
                                         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                                             {{ __('Depois de a sua conta ser eliminada, todos os seus recursos e dados serão eliminados permanentemente. Antes de eliminar a sua conta, faça o download de todos os dados ou informações que deseja reter.') }}
                                         </p>
                             
-                                        <div class="mt-6">
+                                        <div class="d-flex align-items-center">
                                             <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
                             
-                                            <x-text-input
+                                            <x-text-input style="width: 300px;"
                                                 id="password"
                                                 name="password"
                                                 type="password"
-                                                class="mt-1 block w-3/4"
+                                                class="mt-1 form-control"
                                                 placeholder="{{ __('Password') }}"
                                             />
                             
                                             <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
                                         </div>
                                         <br />
-                                        <div class="mt-6 flex justify-end">
-                                            <x-secondary-button x-on:click="$dispatch('close')">
-                                                {{ __('Cancelar') }}
-                                            </x-secondary-button>
-                            
-                                            <x-danger-button class="ml-3">
+                                        <div class="mt-6 flex justify-end">    
+                                            <x-danger-button class="ml-3" class="ml-4 btn btn-primary">
                                                 {{ __('Apagar Conta') }}
                                             </x-danger-button>
                                         </div>
@@ -438,13 +437,13 @@
                         </button>
                         </div>
                         <div class="modal-body">
-                            <p>Insira o Nome para o qual pertenda mudar.</p>
+                            <p>Insira o Nome para o qual pretende atualizar.</p>
                             <form method="post" action="{{ route('profile.update') }}">
                                 @csrf
                                 @method('patch')
 
                                 <div>
-                                    <x-input-label for="name" :value="__('Nome')" />
+                                    <x-input-label for="name" :value="__('Nome:')" />
                                     <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
                                     <x-input-error class="mt-2" :messages="$errors->get('name')" />
                                 </div>
@@ -474,7 +473,7 @@
                         </button>
                         </div>
                         <div class="modal-body">
-                            <p>Insira o Gênero para o qual pertenda mudar.</p>
+                            <p>Insira o Gênero para o qual pretenda atualizar.</p>
                             <form method="post" action="{{ route('profile.update') }}">
                                 @csrf
                                 @method('patch')
@@ -515,13 +514,13 @@
                         </button>
                         </div>
                         <div class="modal-body">
-                            <p>Insira o Nº Telemóvel para o qual pertenda mudar.</p>
+                            <p>Insira o Nº Telemóvel para o qual pretende atualizar.</p>
                             <form method="post" action="{{ route('profile.update') }}">
                                 @csrf
                                 @method('patch')
 
                                 <div>
-                                    <x-input-label for="nTelemovel" :value="__('nTelemovel')" />
+                                    <x-input-label for="nTelemovel" :value="__('Nº Telemóvel:')" />
                                     <x-text-input id="nTelemovel" name="nTelemovel" type="text" class="mt-1 block w-full" :value="old('nTelemovel', $user->nTelemovel)" required autofocus autocomplete="nTelemovel" />
                                     <x-input-error class="mt-2" :messages="$errors->get('nTelemovel')" />
                                 </div>
