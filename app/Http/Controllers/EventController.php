@@ -85,7 +85,7 @@ public function update(Request $request, Event $event)
         'numero_vagas' => 'required|integer',
         'vagas_disponiveis' => 'required|integer',
         'imagem' => 'image',
-        'preco' => 'required|deciaml',
+        'preco' => 'required|string',
     ]);
 
     if ($request->hasFile('imagem')) {

@@ -1,4 +1,6 @@
-
+@php
+  $currentUrl = url()->current();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,22 +11,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <script src="https://kit.fontawesome.com/bdbff2d269.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('js/sb-admin-2.js') }}"></script>
-    <script src="{{ asset('jquery/jquery.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('bootstrap\js\bootstrap.bundle.min.js') }}"></script>
-
-    <title>Eventos - Adicionar Evento</title>
     
-    <!-- Custom fonts for this template-->
+    
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+                }
+            });
+        });
+    </script>
+
+    <title>Eventos - Gestão Utilizadores</title>
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -39,28 +53,27 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-level-up"></i>
+                    <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3" style="text-transform: capitalize;">EventWorld</div>
-            </a>                       
+                <div class="sidebar-brand-text mx-3">Eventos</div>
+            </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('dashboard') }}">
-                    <i class="fas fa-fw fa-list-alt"></i>
-                    <span>Eventos</span></a>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            @if(Auth::check() && Auth::user()->cargo == 1)
             <div class="sidebar-heading">
-                Gestão
+                Interface
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -70,19 +83,18 @@
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Administrador</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gerir:</h6>
-                        <a class="collapse-item" href="{{ route('events') }}">Eventos</a>
-                        <a class="collapse-item" href="{{ route('users') }}">Utilizadores</a>
-                        <a class="collapse-item" href="{{ route('paymentstable')}}">Pagamentos</a>
+                        <a class="collapse-item {{ strpos($currentUrl, 'events') !== false ? 'active' : '' }}" href="{{ route('events') }}">Eventos</a>
+                        <a class="collapse-item {{ strpos($currentUrl, 'users') !== false ? 'active' : '' }}" href="{{ route('users') }}">Utilizadores</a>
+                        <a class="collapse-item {{ strpos($currentUrl, 'paymentstable') !== false ? 'active' : '' }}" href="{{ route('paymentstable') }}">Pagamentos</a>
                     </div>
                 </div>
             </li>
-        
+
             <!-- Divider -->
-            <hr class="sidebar-divider">
-            @endif
+            <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -90,7 +102,6 @@
             </div>
 
         </ul>
-        <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -102,9 +113,11 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
+                    <form class="form-inline">
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </form>
 
                     <!-- Topbar Search -->
                     {{-- <form
@@ -159,7 +172,7 @@
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
-                                    Notificações
+                                    Alerts Center
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="mr-3">
@@ -168,8 +181,8 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">Abril 12, 2023</div>
-                                        <span class="font-weight-bold">Um novo Evento foi adicionado!</span>
+                                        <div class="small text-gray-500">December 12, 2019</div>
+                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -179,8 +192,8 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">Abril 4, 2023</div>
-                                        Foram adicionados 13€ á sua Conta!
+                                        <div class="small text-gray-500">December 7, 2019</div>
+                                        $290.29 has been deposited into your account!
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -190,11 +203,11 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">Março 22, 2023</div>
-                                        Alerta: Está com uma quantidade monetária baixa na sua Conta.
+                                        <div class="small text-gray-500">December 2, 2019</div>
+                                        Spending Alert: We've noticed unusually high spending for your account.
                                     </div>
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todas as Notificações</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                             </div>
                         </li>
 
@@ -233,98 +246,8 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <form method="POST" action="{{ route('eventStore') }}" class="grid grid-cols-1 gap-6 mt-4" enctype="multipart/form-data">
-                            @csrf
-                          
-                            <!-- Nome -->
-                            <div>
-                                <label for="nome" class="block text-gray-700 font-bold mb-2">
-                                    Nome
-                                </label>
-                                <x-input id="nome" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="nome" required autofocus />
-                            </div>
-
-                            <!-- Descrição -->
-                            <div class="mt-4 flex items-center">
-                                <label for="descricao" class="block text-gray-700 font-bold mb-2 flex items-center justify-center">
-                                    Descrição
-                                </label>
-                                <textarea id="descricao" class="ml-2 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="4" cols="50" name="descricao" required></textarea>
-                            </div>                                                                                                                               
-
-                            <!-- Localização -->
-                            <div class="mt-4">
-                                <label for="localizacao" class="block text-gray-700 font-bold mb-2">
-                                    Localização
-                                </label>
-                                <x-input id="localizacao" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="localizacao" required />
-                            </div>
-
-                            <!-- Data Inicio -->
-                            <div class="mt-4">
-                                <label for="data_inicio" class="block text-gray-700 font-bold mb-2">
-                                    Data de Ínicio
-                                </label>
-                                <x-input id="data_inicio" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="datetime-local" name="data_inicio" required />
-                            </div>
-
-                            <!-- Data Fim -->
-                            <div class="mt-4">
-                                <label for="data_fim" class="block text-gray-700 font-bold mb-2">
-                                    Data de Fim
-                                </label>
-                                <x-input id="data_fim" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="datetime-local" name="data_fim" required />
-                            </div>
-
-                            <!-- Número de Vagas -->
-                            <div class="mt-4">
-                                <label for="numero_vagas" class="block text-gray-700 font-bold mb-2">
-                                    Número de Vagas
-                                </label>
-                                <x-input id="numero_vagas" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" name="numero_vagas" required />
-                            </div>
-
-                            <!-- Vagas Disponíveis-->
-                            <div class="mt-4">
-                                <label for="vagas_disponiveis" class="block text-gray-700 font-bold mb-2">
-                                    Vagas Disponíveis
-                                </label>
-                                <x-input id="vagas_disponiveis" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" name="vagas_disponiveis" required />
-                            </div>
-                            
-                            <!-- Preço -->
-                            <div class="mt-4">
-                                <label for="preco" class="block text-gray-700 font-bold mb-2">
-                                    Preço
-                                </label>
-                                <input id="preco" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" pattern="\d+(\.\d{1,2})?" name="preco" required />
-                            </div>
-
-
-                            <!-- Imagem -->
-                            <div class="mt-4">
-                                <label for="imagem" class="block text-gray-700 font-bold mb-2">
-                                    Imagem
-                                </label>
-                                <x-input id="imagem" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="file" name="imagem" required />
-                            </div>
-                          
-                            <div class="flex items-center justify-end mt-4">
-                                <x-danger-button class="ml-3" class="ml-4 btn btn-primary">
-                                    <i class="fas fa-plus"></i> {{ __('Criar') }}
-                                </x-button>
-                            </div> 
-                            <br />                           
-                          </form>
-                    </div>
-                </div>
-            </div>
-            <!-- End of Main Content -->
+                    <!-- DataTales Example -->
+                    
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -373,21 +296,21 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="..\..\vendor\jquery\jquery.min.js"></script>
-    <script src="vendor\bootstrap\js\bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor\jquery-easing\jquery.easing.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="/js/sb-admin-2.min.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 

@@ -39,10 +39,10 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-level-up"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Eventos</div>
-            </a>
+                <div class="sidebar-brand-text mx-3" style="text-transform: capitalize;">EventWorld</div>
+            </a>                       
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -50,8 +50,8 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('dashboard') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <i class="fas fa-fw fa-list-alt"></i>
+                    <span>Eventos</span></a>
             </li>
 
             <!-- Divider -->
@@ -60,7 +60,7 @@
             <!-- Heading -->
             @if(Auth::check() && Auth::user()->cargo == 1)
             <div class="sidebar-heading">
-                Interface
+                Gestão
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->

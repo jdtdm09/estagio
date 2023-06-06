@@ -43,10 +43,10 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-level-up"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Eventos</div>
-            </a>
+                <div class="sidebar-brand-text mx-3" style="text-transform: capitalize;">EventWorld</div>
+            </a> 
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -54,8 +54,8 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('dashboard') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <i class="fas fa-fw fa-list-alt"></i>
+                    <span>Eventos</span></a>
             </li>
 
             <!-- Divider -->
@@ -64,7 +64,7 @@
             <!-- Heading -->
             @if(Auth::check() && Auth::user()->cargo == 1)
             <div class="sidebar-heading">
-                Interface
+                Gestão
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -237,32 +237,47 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
                         <div class="container py-5">
                           <div class="row">
                             <div class="col-lg-4">
                               <div class="card mb-4">
                                 <div class="card-body text-center">
-                                    <img src="{{ $user->avatar ? '/storage/'.$user->avatar : '/img/undraw_profile.svg' }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">    
-                                    <h5 class="my-3">
-                                    @auth
-                                    {{ Auth::user()->name }}
-                                    @endauth
-                                    </h5>
-                                  <p class="text-muted mb-1">Full Stack Developer</p>
-                                  <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                                    <img id="profile-image" class="rounded-circle img-fluid" src="{{ $user->avatar ? '/storage/'.$user->avatar : '/img/undraw_profile.svg' }}" alt="avatar" style="width: 150px; height: 150px; object-fit: cover;">
+                                    <h3 class="my-3">
+                                      @auth
+                                      {{ Auth::user()->name }}
+                                      @endauth
+                                    </h3>
+                                    <form method="post" action="{{ route('profile.avatar') }}" enctype="multipart/form-data">
+                                      @method('patch')
+                                      @csrf
+                                  
+                                      <label for="avatar">
+                                        <i class="fa fa-2x fa-camera"></i>
+                                        <input id="avatar" name="avatar" type="file" :value="old('avatar', $user->avatar)" autofocus autocomplete="avatar" style="display: none;"  />
+                                        <br/><span style="font-size: 90%" >(Selecione uma imagem)</span>
+                                        <br/>
+                                        <span id="imageName" style="color:green;"></span>
+                                      </label>
+
+                                      <script>
+                                        let input = document.getElementById("avatar");
+                                        let imageName = document.getElementById("imageName")
+                                
+                                        input.addEventListener("change", ()=>{
+                                            let inputImage = document.querySelector("input[type=file]").files[0];
+                                
+                                            imageName.innerText = inputImage.name;
+                                        })
+                                      </script>
+                                      
+                                  
+                                        <div class="flex items-center justify-center gap-4 mt-4">
+                                            <x-danger-button class="btn btn-primary">{{ __('Atualizar') }}</x-primary-button>
+                                        </div>                                                                               
+                                    </form>                                    
+                                  </div>                                  
                                 </div>
-                              </div>
-                              <div class="card mb-4 mb-lg-0">
-                                <div class="card-body p-0">
-                                  <ul class="list-group list-group-flush rounded-3">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                      <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                                      <p class="mb-0">mdbootstrap</p>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
                             </div>
                             <div class="col-lg-8">
                               <div class="card mb-4">
@@ -337,25 +352,25 @@
                                     <div class="col-sm-3">
                                       <p class="mb-0">Redefinir Password:</p>
                                     </div>
-                                    <div class="col-sm-9">
+                                    <div class="col-sm-9" >
                                         <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
                                             @csrf
                                             @method('put')
                                     
                                             <div class="d-flex align-items-center">
-                                                <x-input-label for="current_password" :value="__('Password Atual:')" class="mr-2" />
+                                                <x-input-label for="current_password" :value="__('Password Atual:')" class="mr-2 mt-2" />
                                                 <x-text-input id="current_password" name="current_password" type="password" style="width: 180px;" class="mt-1 form-control" autocomplete="current-password" />
                                                 <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-1" /> 
                                             </div>                                                                                                                                  
                                                                                                                                  
                                             <div class="d-flex">
-                                                <x-input-label for="password" :value="__('Nova Password:')" class="mr-2" />
+                                                <x-input-label for="password" :value="__('Nova Password:')" class="mr-2 mt-2" />
                                                 <x-text-input id="password" name="password" type="password" style="width: 180px;" class="mt-1 form-control" autocomplete="new-password" />
                                                 <x-input-error :messages="$errors->updatePassword->get('password')" />
                                             </div>
                                     
                                             <div class="d-flex">
-                                                <x-input-label for="password_confirmation" :value="__('Confirmar Password:')" class="mr-2" />
+                                                <x-input-label for="password_confirmation" :value="__('Confirmar Password:')" class="mt-2 mr-2" />
                                                 <x-text-input id="password_confirmation" name="password_confirmation" type="password" style="width: 180px;" class="mt-1 form-control" autocomplete="new-password" />
                                                 <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-1" />
                                             </div>
@@ -377,39 +392,10 @@
                                     </div>
                                   </div>   
                                   <hr>
-                                  <div class="row">
-                                    <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
-                                        @csrf
-                                        @method('delete')
-                            
-                                        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                                            {{ __('Tem a certeza que deseja excluir a sua conta?') }}
-                                        </h2>
-                            
-                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                            {{ __('Depois de a sua conta ser eliminada, todos os seus recursos e dados serão eliminados permanentemente. Antes de eliminar a sua conta, faça o download de todos os dados ou informações que deseja reter.') }}
-                                        </p>
-                            
-                                        <div class="d-flex align-items-center">
-                                            <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
-                            
-                                            <x-text-input style="width: 300px;"
-                                                id="password"
-                                                name="password"
-                                                type="password"
-                                                class="mt-1 form-control"
-                                                placeholder="{{ __('Password') }}"
-                                            />
-                            
-                                            <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
-                                        </div>
-                                        <br />
-                                        <div class="mt-6 flex justify-end">    
-                                            <x-danger-button class="ml-3" class="ml-4 btn btn-primary">
-                                                {{ __('Apagar Conta') }}
-                                            </x-danger-button>
-                                        </div>
-                                    </form>
+                                  <div class="row" style="height: 30px; position: relative;">
+                                    <x-danger-button style="width: 18%; position: absolute; top: 50%; left: 88%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);" class="btn btn-danger" data-toggle="modal" data-target="#apagarConta">
+                                        {{ __('Apagar Conta') }}
+                                    </x-danger-button>
                                   </div>                               
                             </div>
                           </div>
@@ -442,9 +428,9 @@
                                 @csrf
                                 @method('patch')
 
-                                <div>
-                                    <x-input-label for="name" :value="__('Nome:')" />
-                                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+                                <div class="d-flex">
+                                    <x-input-label for="name" :value="__('Nome:')" class="mr-1 mt-2" />
+                                    <x-text-input id="name" name="name" type="text" style="width: 250px;" class="mt-1 form-control" :value="old('name', $user->name)" required autofocus autocomplete="name" />
                                     <x-input-error class="mt-2" :messages="$errors->get('name')" />
                                 </div>
                                 <br/>
@@ -519,9 +505,9 @@
                                 @csrf
                                 @method('patch')
 
-                                <div>
-                                    <x-input-label for="nTelemovel" :value="__('Nº Telemóvel:')" />
-                                    <x-text-input id="nTelemovel" name="nTelemovel" type="text" class="mt-1 block w-full" :value="old('nTelemovel', $user->nTelemovel)" required autofocus autocomplete="nTelemovel" />
+                                <div class="d-flex" >
+                                    <x-input-label for="nTelemovel" :value="__('Nº Telemóvel:')" class="mr-1 mt-2" />
+                                    <x-text-input id="nTelemovel" name="nTelemovel" type="text" style="width: 250px;" class="mt-1 form-control" :value="old('nTelemovel', $user->nTelemovel)" required autofocus autocomplete="nTelemovel" />
                                     <x-input-error class="mt-2" :messages="$errors->get('nTelemovel')" />
                                 </div>
                                 <br/>
@@ -529,6 +515,58 @@
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="btn btn-primary">Atualizar</button>
                                 </div>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <?
+                /**
+                 * ? Apagar conta
+                 */
+                ?>
+                <div class="modal fade" id="apagarConta" tabindex="-1" role="dialog" aria-labelledby="apagarContaLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="apagarContaLabel">Apagar Conta:</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
+                                @csrf
+                                @method('delete')
+                    
+                                <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                    {{ __('Tem a certeza que deseja apagar a sua conta?') }}
+                                </h2>
+                    
+                                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                    {{ __('Depois de a sua conta ser eliminada, todos os seus pagamentos e acesso a eventos serão eliminados permanentemente. Antes de eliminar a sua conta, faça o download de todos os dados ou informações que deseja reter.') }}
+                                </p>
+                    
+                                <div class="d-flex align-items-center">
+                                    <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
+                    
+                                    <x-text-input style="width: 300px;"
+                                        id="password"
+                                        name="password"
+                                        type="password"
+                                        class="mt-1 form-control"
+                                        placeholder="{{ __('Password') }}"
+                                    />
+                    
+                                    <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
+                                </div>
+                                <br />
+                                <div>
+                                    <x-danger-button class="btn btn-sm btn-danger">
+                                        {{ __('Apagar Conta') }}
+                                    </x-danger-button>
+                                </div>                                                                                               
                             </form>
                         </div>
                     </div>

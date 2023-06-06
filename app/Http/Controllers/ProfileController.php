@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Payment;
 
 class ProfileController extends Controller
 {
@@ -59,6 +60,9 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
+
+        // Excluir os pagamentos relacionados ao user 
+        Payment::where('user_id', $user->id)->delete();
 
         Auth::logout();
 
