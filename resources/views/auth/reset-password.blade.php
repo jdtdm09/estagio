@@ -1,16 +1,13 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('password.store') }}">
+    <?php 
+        $url = $_SERVER['REQUEST_URI']; 
+        $parts = parse_url($url);
+        $path = trim($parts['path'], '/');
+        $pathSegments = explode('/', $path);
+        $userId = end($pathSegments);
+    ?>
+    <form method="POST" action="{{ route('updatePassword', ['id' => $userId]) }}">
         @csrf
-
-        <!-- Password Reset Token -->
-        <input type="hidden" name="token" value="{{ $request->route('token') }}">
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
 
         <!-- Password -->
         <div class="mt-4">
@@ -25,6 +22,7 @@
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
                                 type="password"
+                                id="password_confirmation"
                                 name="password_confirmation" required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />

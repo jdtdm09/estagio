@@ -35,6 +35,7 @@ class PDFController extends Controller
         }
 
         $paymentQrCode = $payment->qrcode;
+        $paymentPin = $payment->pin;
 
         /*
         TODO: Fazer transform para qrcode
@@ -44,7 +45,8 @@ class PDFController extends Controller
             'title' => "Bilhete para {$eventName}",
             'date' => date('d/m/Y'),
             'name' => $eventName,
-            'qrcode' => $paymentQrCode
+            'qrcode' => $paymentQrCode,
+            'pin'   => $paymentPin
         ];
         
         $pdf = PDF::loadView('myPDF', $data);

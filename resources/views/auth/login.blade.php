@@ -23,7 +23,29 @@
 </head>
 
 <body class="bg-gradient-primary">
+    @if(session('message'))
+    <div class="alert alert-danger" style="position: fixed; top: 35%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+        {{ session('message') }}
+    </div>
 
+    <script>
+        setTimeout(function() {
+            document.querySelector('.alert').remove();
+        }, 3500); // 3500 milliseconds = 3.5 seconds
+    </script>
+    @endif
+
+    @if(session('mensagem'))
+    <div class="success-message" style="position: fixed; top: 35%; left: 50%; transform: translate(-50%, -50%); background-color: #dff0d8; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); z-index: 9999;">
+        <p>{{ session('mensagem') }}</p>
+    </div>
+
+    <script>
+        setTimeout(function() {
+            document.querySelector('.success-message').remove();
+        }, 3500); // 3500 milliseconds = 3,5 seconds
+    </script>
+    @endif
     <div class="container">
 
         <!-- Outer Row -->
@@ -52,7 +74,9 @@
                                             <x-input-label for="email" />
                                             <x-text-input id="email" class="form-control form-control-user"
                                                 type="email" name="email" :value="old('email')" required autofocus
-                                                autocomplete="username" placeholder="Email"/>
+                                                autocomplete="username" placeholder="Email"
+                                                value="{{ isset($_COOKIE['email']) ? $_COOKIE['email'] : '' }}"
+                                            />
                                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                         </div>
 
@@ -61,15 +85,17 @@
                                             <x-input-label for="password" />
                                             <x-text-input id="password" class="form-control form-control-user"
                                                 type="password" name="password" required
-                                                autocomplete="current-password" placeholder="Password"/>
+                                                autocomplete="current-password" placeholder="Password"
+                                                value="{{ isset($_COOKIE['password']) ? $_COOKIE['password'] : '' }}"
+                                            />
                                             <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                         </div>
 
                                         <!-- Remember Me -->
                                         <div class="form-group2">
                                             <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="remember_me" name="remember">
-                                                <label class="custom-control-label" for="remember_me">Remember Me</label>
+                                                <input type="checkbox" class="custom-control-input" id="remember_me" name="remember" @if(isset($_COOKIE["remember"])) checked @endif>
+                                                <label class="custom-control-label" for="remember_me">Lembrar-me</label>
                                             </div>
                                         </div>
 
@@ -80,7 +106,7 @@
                                         <hr />
                                         
                                         <div class="text-center">
-                                            <a class="small" href="forgot-password.html">Esqueceu a Password?</a>
+                                            <a class="small" href="forgot-password">Esqueceu a Password?</a>
                                         </div>
                                         
                                         <div class="text-center">

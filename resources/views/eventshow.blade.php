@@ -357,6 +357,15 @@
                             </div>
                             <div class="modal-body">
                                 <video id="preview"></video>
+                                <form method="POST" action="{{ route('verifyPin', ['eventId' => $event->id, 'userId' => Auth::user()->id]) }}">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="pin">PIN:</label>
+                                        <input type="text" id="pin" name="pin" class="form-control" placeholder="Insira o PIN">
+                                    </div>
+                                    <br />
+                                    <button type="submit" class="btn btn-primary">Enviar</button>
+                                </form>
                                 <script type="text/javascript">
                                     document.getElementById("btn-entrar").addEventListener("click", function() {
                                       let eventId = window.location.href.split("/").pop();

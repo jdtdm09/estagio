@@ -29,7 +29,29 @@
 </head>
 
 <body id="page-top">
+    @if(session('message'))
+    <div class="alert alert-danger" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+        {{ session('message') }}
+    </div>
 
+    <script>
+        setTimeout(function() {
+            document.querySelector('.alert').remove();
+        }, 3500); // 3500 milliseconds = 3.5 seconds
+    </script>
+    @endif
+
+    @if(session('mensagem'))
+    <div class="success-message" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #dff0d8; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); z-index: 9999;">
+        <p>{{ session('mensagem') }}</p>
+    </div>
+
+    <script>
+        setTimeout(function() {
+            document.querySelector('.success-message').remove();
+        }, 3500); // 3500 milliseconds = 3,5 seconds
+    </script>
+    @endif
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -40,10 +62,10 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-level-up"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Eventos</div>
-            </a>
+                <div class="sidebar-brand-text mx-3" style="text-transform: capitalize;">EventWorld</div>
+            </a>    
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -62,7 +84,7 @@
                 alt="..."
                 />
                 <p class="text-center mb-2">
-                <strong>Eventos</strong> - Cria a tua conta para teres acesso a todos os Eventos disponíveis!
+                <strong>Eventos</strong> - Cria a tua conta para teres acesso a todas as Atualizações e Notificações sobre os Eventos disponíveis!
                 </p>
                 <a class="btn btn-success btn-sm" href="{{ route('register') }}">Criar Conta!</a>
             </div>
@@ -104,7 +126,7 @@
                     <ul class="navbar-nav ml-auto">
                         @if (Route::has('login'))
                         @auth
-                            <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                            <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Eventos</a>
                         @else
                             <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Login</a>
 

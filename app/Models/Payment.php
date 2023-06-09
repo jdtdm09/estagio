@@ -16,6 +16,7 @@ class Payment extends Model
         'method',
         'reference',
         'qrcode',
+        'pin',
     ];
     
     /*

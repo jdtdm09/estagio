@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('method');
             $table->string('reference');
             $table->string('qrcode');
+            $table->string('pin');
             $table->timestamps();
 
             // Foreign keys

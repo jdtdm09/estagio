@@ -25,7 +25,7 @@ use App\Models\Payment;
 Route::get('/', function () {
     $events = Event::all();
     return view('welcome', compact('events'));
-});
+})->name('welcome');
 
 Route::get('/dashboard', function () {
     $events = Event::all();
@@ -38,6 +38,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile/avatar', [AvatarController::class, 'update'])->name('profile.avatar');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+});
+
+Route::get('/password-reset/{id}', function ($id) {
+    return view('auth.reset-password', ['id' => $id]);
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -116,5 +120,9 @@ Route::get('/generate-pdf/{eventId}', [PDFController::class, 'generatePDF'])->na
 
 Route::post('/events/{event}/check-qr-code', [EventController::class, 'checkQrCode'])->name('events.checkQrCode');
 
+Route::post('/user/send-email', [UserController::class, 'sendEmail'])->name('sendEmail');
+
+Route::post('/user/reset-password/{id}', [UserController::class, 'updatePassword'])->name('updatePassword');
+Route::post('/event/verify-pin/{eventId}/{userId}', [EventController::class, 'verifyPin'])->name('verifyPin');
 
 require __DIR__.'/auth.php';

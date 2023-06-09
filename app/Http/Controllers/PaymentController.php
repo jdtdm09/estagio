@@ -72,6 +72,7 @@ class PaymentController extends Controller
 
     // Gere o código QR
     $qrcode = substr(md5(uniqid(mt_rand(), true)), 0, 63);
+    $pin = substr(md5(uniqid(mt_rand(), true)), 0, 6);
 
 
 
@@ -82,7 +83,8 @@ class PaymentController extends Controller
         'amount' => $amount,
         'method' => $metodo,
         'reference' => '981017123',
-        'qrcode' => $qrcode
+        'qrcode' => $qrcode,
+        'pin' => $pin
     ]);
 
     // Decrementar o número de vagas disponíveis

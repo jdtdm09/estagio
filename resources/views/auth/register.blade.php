@@ -79,11 +79,11 @@
                                         <div class="form-group">
                                             <x-input-label for="genero" />
                                             <select id="genero" name="genero" class="form-control form-control-user" required autofocus>
-                                                <option value="" selected>Selecione uma opção</option>
-                                                <option value="Masculino">Masculino</option>
-                                                <option value="Feminino">Feminino</option>
+                                                <option value="" selected disabled>Selecione uma opção</option>
+                                                <option value="Masculino" >Masculino</option>
+                                                <option value="Feminino" >Feminino</option>
                                                 <option value="Outro">Outro</option>
-                                            </select>
+                                            </select>                                            
                                             <x-input-error :messages="$errors->get('genero')" class="mt-2" />
                                         </div>
                                         

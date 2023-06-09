@@ -32,6 +32,7 @@
             </br>
             <div style="position: absolute; top:35%; left:42.2%; transform:translate(-50%,-50%); width:20%; height:auto;"> 
                 {!! DNS2D::getBarcodeHTML("$qrcode", 'QRCODE') !!}
+                {{ $pin }}
             </div>
         </div>
     </div>

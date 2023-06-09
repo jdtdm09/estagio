@@ -156,4 +156,19 @@ public function checkQrCode($event)
         return response()->json(['message' => 'Bilhete Recusado']);
     }
 }
+
+public function verifyPin(Request $request, $eventId, $userId)
+{
+    $eventId = $request->route('eventId');
+    $userId = $request->route('userId');
+    $eventPin = $request->input('pin');
+
+    $verifiedEnter = Payment::where('pin', $eventPin)->where('event_id', $eventId)->where('user_id', $userId)->first();
+
+    if ($verifiedEnter) {
+        return redirect()->route('dashboard')->with('mensagem', 'Bilhete Aceite!');
+    } else {
+        return redirect()->route('dashboard')->with('message', 'Bilhete Recusado!');
+    }
+}
 }
