@@ -27,12 +27,12 @@
     <p>{{ $date }}</p>
     <p>Isto é o bilhete para o evento: {{ $name }}</p>
         <div class="qrcode" style="display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center;">
-            QrCode para a entrado no Evento.
+            QrCode para a entrada no Evento.
             </br>
             </br>
-            <div style="position: absolute; top:35%; left:42.2%; transform:translate(-50%,-50%); width:20%; height:auto;"> 
+            <div style="position: absolute; top: 36%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
                 {!! DNS2D::getBarcodeHTML("$qrcode", 'QRCODE') !!}
-                {{ $pin }}
+                PIN: {{ $pin }}
             </div>
         </div>
     </div>

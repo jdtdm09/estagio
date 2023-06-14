@@ -78,7 +78,7 @@
 
                                         <div class="form-group">
                                             <x-input-label for="genero" />
-                                            <select id="genero" name="genero" class="form-control form-control-user" required autofocus>
+                                            <select id="genero" name="genero" class="form-control" required autofocus>
                                                 <option value="" selected disabled>Selecione uma opção</option>
                                                 <option value="Masculino" >Masculino</option>
                                                 <option value="Feminino" >Feminino</option>

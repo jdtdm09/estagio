@@ -123,6 +123,15 @@ Route::post('/events/{event}/check-qr-code', [EventController::class, 'checkQrCo
 Route::post('/user/send-email', [UserController::class, 'sendEmail'])->name('sendEmail');
 
 Route::post('/user/reset-password/{id}', [UserController::class, 'updatePassword'])->name('updatePassword');
+
 Route::post('/event/verify-pin/{eventId}/{userId}', [EventController::class, 'verifyPin'])->name('verifyPin');
+
+Route::get('/paymentsregister', function () {
+    $userId = auth()->id();
+    $payments = Payment::where('user_id', $userId)->get();
+    return view('paymentsRegister', compact('payments'));
+})->name('paymentsregister');
+
+
 
 require __DIR__.'/auth.php';

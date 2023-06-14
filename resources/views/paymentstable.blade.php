@@ -56,21 +56,20 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-level-up"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Eventos</div>
+                <div class="sidebar-brand-text mx-3" style="text-transform: capitalize;">EventWorld</div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-level-up"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3" style="text-transform: capitalize;">EventWorld</div>
-            </a> 
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('dashboard') }}">
+                    <i class="fas fa-fw fa-list-alt"></i>
+                    <span>Eventos</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -236,6 +235,10 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Perfil
                                 </a>
+                                <a class="dropdown-item" href="{{ route('paymentsregister')}}">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Pagamentos
+                                </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -276,7 +279,7 @@
                                         <th>ID Utilizador</th>
                                         <th>ID Evento</th>
                                         <th>Método</th>
-                                        <th>Quantidade</th>
+                                        <th>Montante</th>
                                         <th>Referência</th>
                                     </tr>
                                 </thead>

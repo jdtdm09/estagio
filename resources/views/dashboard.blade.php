@@ -100,7 +100,7 @@
                         <h6 class="collapse-header">Gerir:</h6>
                         <a class="collapse-item" href="{{ route('events') }}">Eventos</a>
                         <a class="collapse-item" href="{{ route('users') }}">Utilizadores</a>
-                        <a class="collapse-item" href="{{ route('paymentstable')}}">Pagamentos</a>
+                        <a class="collapse-item" href="{{ route('paymentstable') }}">Pagamentos</a>
                     </div>
                 </div>
             </li>
@@ -271,7 +271,7 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Perfil
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('paymentsregister')}}">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Pagamentos
                                 </a>
