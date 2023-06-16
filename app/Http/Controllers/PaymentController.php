@@ -70,7 +70,7 @@ class PaymentController extends Controller
 
     $amount = $event->preco;
 
-    // Gere o código QR
+    // Gera o código QR
     $qrcode = substr(md5(uniqid(mt_rand(), true)), 0, 63);
     $pin = substr(md5(uniqid(mt_rand(), true)), 0, 6);
 
