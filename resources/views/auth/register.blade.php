@@ -20,6 +20,13 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+    <style>
+        .box {
+        font-size: 0.8rem; 
+        border-radius: 10rem;
+      }
+      </style>
+
 </head>
 
 <body class="bg-gradient-primary">
@@ -78,7 +85,7 @@
 
                                         <div class="form-group">
                                             <x-input-label for="genero" />
-                                            <select id="genero" name="genero" class="form-control" required autofocus>
+                                            <select id="genero" name="genero" class="form-control box" required autofocus>
                                                 <option value="" selected disabled>Selecione uma opção</option>
                                                 <option value="Masculino" >Masculino</option>
                                                 <option value="Feminino" >Feminino</option>

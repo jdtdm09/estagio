@@ -58,18 +58,18 @@ class PDFController extends Controller
         // Configurar o objeto PHPMailer
         $mail = new PHPMailer(true); // Passing `true` enables exceptions
         
-        $mail->SMTPDebug = 3;
+        $mail->SMTPDebug = 0;
         $mail->Debugoutput = 'html';
         $mail->setLanguage('pt');
         $mail->isSMTP();
-        $mail->Host = 'smtp.sapo.pt';
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = 'tls';
-        $mail->Username = 'diogomagalhaesestagio@sapo.pt';
-        $mail->Password = 'Scan2gogo.';
+        $mail->Username = 'diogomagalhaesestagio@gmail.com';
+        $mail->Password = 'ouugxtvdqzpohffv';
         $mail->Port = 587;
-        $mail->setFrom('diogomagalhaesestagio@sapo.pt');
-        $mail->addReplyTo('rdiogomagalhaesestagio@sapo.pt');
+        $mail->setFrom('diogomagalhaesestagio@gmail.com');
+        $mail->addReplyTo('rdiogomagalhaesestagio@gmail.com');
         $mail->addAddress($userEmail, 'Utilizador');
         $mail->isHTML(true);
         $mail->Subject = 'Bilhete para ' . $eventName;

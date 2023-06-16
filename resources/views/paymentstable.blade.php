@@ -290,7 +290,7 @@
                                             <td><?= $payment->user_id ?></td>
                                             <td><?= $payment->event_id ?></td>
                                             <td><?= $payment->method ?></td>
-                                            <td><?= $payment->amount ?></td>
+                                            <td><?= $payment->amount ?>€</td>
                                             <td><?= $payment->reference ?></td>
                                         </tr>
                                     <?php endforeach; ?>

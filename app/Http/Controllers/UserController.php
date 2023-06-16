@@ -135,18 +135,18 @@ class UserController extends Controller
 
     $mail = new PHPMailer(true); // Passing `true` enables exceptions
         
-    $mail->SMTPDebug = 3;
+    $mail->SMTPDebug = 0;
     $mail->Debugoutput = 'html';
     $mail->setLanguage('pt');
     $mail->isSMTP();
-    $mail->Host = 'smtp.sapo.pt';
+    $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
     $mail->SMTPSecure = 'tls';
-    $mail->Username = 'diogomagalhaesestagio@sapo.pt';
-    $mail->Password = 'Scan2gogo.';
+    $mail->Username = 'diogomagalhaesestagio@gmail.com';
+    $mail->Password = 'ouugxtvdqzpohffv';
     $mail->Port = 587;
-    $mail->setFrom('diogomagalhaesestagio@sapo.pt');
-    $mail->addReplyTo('rdiogomagalhaesestagio@sapo.pt');
+    $mail->setFrom('diogomagalhaesestagio@gmail.com');
+    $mail->addReplyTo('rdiogomagalhaesestagio@gmail.com');
     $mail->addAddress($userEmail, 'Utilizador');
     $mail->isHTML(true);
     $mail->Subject = 'Recuperação da Password';
@@ -178,6 +178,23 @@ class UserController extends Controller
 
     return redirect()->route('login')->with('mensagem', 'Password alterada com sucesso.');
     
+}
+
+    public function findSpecific($userId)
+{
+    $specificUser = User::where('id', $userId)->first();
+    
+    if($specificUser) {
+    	return [
+            "status" => 1,
+            "data" => $specificUser
+        ];
+    } else {
+    	return [
+            "status" => 2,
+            "message" => "Não encontrado"
+        ];
+    }
 }
 
 }

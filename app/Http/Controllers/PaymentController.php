@@ -76,7 +76,7 @@ class PaymentController extends Controller
 
 
 
-    // Crie uma nova instância do modelo Pagamento e preencha os campos
+    
     $pagamento = new Payment([
         'user_id' => $userId,
         'event_id' => $eventId,
@@ -87,10 +87,10 @@ class PaymentController extends Controller
         'pin' => $pin
     ]);
 
-    // Decrementar o número de vagas disponíveis
+    // Decrementa o número de vagas disponíveis
     $event->vagas_disponiveis -= 1;
     $event->save();
-    // Salve o pagamento na base de dados
+    // Salva o pagamento na base de dados
     $pagamento->save();
 
 

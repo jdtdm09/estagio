@@ -25,6 +25,8 @@ Route::resource('events', EventController::class);
 
 Route::resource('users', UserController::class);
 
+Route::get('users/{userId}', [UserController::class, 'findSpecific']);
+
 Route::resource('payments', PaymentController::class);
 
 Route::get('payment/{userId}/{eventId}', [PaymentController::class, 'findSpecific']);

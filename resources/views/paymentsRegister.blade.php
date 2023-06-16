@@ -275,18 +275,20 @@
                                             }
                                         </style>
                                         <tr>
-                                            <th>ID Evento</th>
+                                            <th>Evento</th>
                                             <th>Método</th>
                                             <th>Montante</th>
+                                            <th>Data de Pagamento</th>
                                             <th>Referência</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($payments as $payment): ?>
                                             <tr>
-                                                <td><?= $payment->event_id ?></td>
+                                                <td><?= $payment->event_name  ?></td>
                                                 <td><?= $payment->method ?></td>
                                                 <td><?= $payment->amount ?>€</td>
+                                                <td><?= date('d/m, H:i', strtotime($payment->created_at)) ?></td>
                                                 <td><?= $payment->reference ?></td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -297,6 +299,9 @@
                     </div>
                 </div>
             <!-- Footer -->
+             
+            
+            </div> 
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">

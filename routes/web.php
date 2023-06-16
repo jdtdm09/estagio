@@ -129,9 +129,21 @@ Route::post('/event/verify-pin/{eventId}/{userId}', [EventController::class, 've
 Route::get('/paymentsregister', function () {
     $userId = auth()->id();
     $payments = Payment::where('user_id', $userId)->get();
+
+    // Iterar sobre os pagamentos e buscar o nome do evento para cada um
+    foreach ($payments as $payment) {
+        $event = Event::find($payment->event_id); // Buscar o evento pelo ID do evento
+
+        // Verificar se o evento foi encontrado
+        if ($event) {
+            $payment->event_name = $event->nome; // Adicionar o nome do evento ao objeto de pagamento
+        } else {
+            $payment->event_name = 'Evento não encontrado'; // Ou qualquer outra mensagem de erro desejada
+        }
+    }
+
     return view('paymentsRegister', compact('payments'));
 })->name('paymentsregister');
-
 
 
 require __DIR__.'/auth.php';
