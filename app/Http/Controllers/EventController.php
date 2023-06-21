@@ -143,7 +143,7 @@ public function update(Request $request, Event $event)
     ];
 }
 
-public function checkQrCode($event)
+    public function checkQrCode($event)
 {
     $userid = auth()->user()->id;
     $eventinfo = Event::find($event);
@@ -157,7 +157,7 @@ public function checkQrCode($event)
     }
 }
 
-public function verifyPin(Request $request, $eventId, $userId)
+    public function verifyPin(Request $request, $eventId, $userId)
 {
     $eventId = $request->route('eventId');
     $userId = $request->route('userId');

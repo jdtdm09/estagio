@@ -55,8 +55,8 @@ class PDFController extends Controller
         $pdfPath = sys_get_temp_dir() . '/bilhete.pdf';
         $pdf->save($pdfPath);
         
-        // Configurar o objeto PHPMailer
-        $mail = new PHPMailer(true); // Passing `true` enables exceptions
+        // Configurar o PHPMailer
+        $mail = new PHPMailer(true); 
         
         $mail->SMTPDebug = 0;
         $mail->Debugoutput = 'html';
