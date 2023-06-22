@@ -101,6 +101,7 @@
                         <a class="collapse-item" href="{{ route('events') }}">Eventos</a>
                         <a class="collapse-item" href="{{ route('users') }}">Utilizadores</a>
                         <a class="collapse-item" href="{{ route('paymentstable') }}">Pagamentos</a>
+                        <a class="collapse-item" href="{{ route('notifications') }}">Notificações</a>
                     </div>
                 </div>
             </li>
@@ -206,7 +207,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
+                                <span class="badge badge-danger badge-counter">{{ $count }}</span>
                             </a>
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -214,6 +215,7 @@
                                 <h6 class="dropdown-header">
                                     Notificações
                                 </h6>
+                                @foreach($notifications as $notification)
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="mr-3">
                                         <div class="icon-circle bg-primary">
@@ -221,33 +223,14 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">Abril 12, 2023</div>
-                                        <span class="font-weight-bold">Um novo Evento foi adicionado!</span>
+                                        <div class="small text-gray-500">{{ $notification->data }}</div>
+                                        <span class="font-weight-bold">{{ $notification->titulo }}</span>
+                                        <br />
+                                        <span class="small text-black-1000">{{ $notification->assunto }}</span>
                                     </div>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">Abril 4, 2023</div>
-                                        Foram adicionados 13€ á sua Conta!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">Março 22, 2023</div>
-                                        Alerta: Está com uma quantidade monetária baixa na sua Conta.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todas as Notificações</a>
+                                @endforeach
+                                {{-- <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todas as Notificações</a> --}}
                             </div>
                         </li>
 

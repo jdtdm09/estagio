@@ -32,3 +32,5 @@ Route::resource('payments', PaymentController::class);
 Route::get('payment/{userId}/{eventId}', [PaymentController::class, 'findSpecific']);
 
 Route::post('/login', [UserController::class, 'login']);
+
+Route::post('payment/create', [PaymentController::class, 'createPayment']);

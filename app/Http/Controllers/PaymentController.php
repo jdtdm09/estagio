@@ -6,6 +6,9 @@ use App\Models\Event;
 use App\Models\Payment;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use PDF;
+use PHPMailer\PHPMailer\PHPMailer;  
+use PHPMailer\PHPMailer\Exception;
 
 class PaymentController extends Controller
 {
@@ -104,5 +107,108 @@ class PaymentController extends Controller
      return redirect()->route('generatePDF', ['eventId' => $eventId]);
     
 }
+
+    public function createPayment(Request $request)
+{
+    $data = $request->json()->all();
+    $userId = $data['userId'];
+    $eventId = $data['eventId'];
+    $metodo = $data['metodo'];
+    
+    $user = User::find($userId);
+    $userEmail = $user->email;
+    
+    $existingPayment = Payment::where('user_id', $userId)->where('event_id', $eventId)->first();
+    if ($existingPayment) {
+        return response()->json(['message' => 'Um pagamento já foi registrado para este usuário e evento.'], 400);
+    }
+
+    $event = Event::find($eventId);
+    if (!$event) {
+        return response()->json(['message' => 'Evento não encontrado.'], 404);
+    }
+
+    if ($event->vagas_disponiveis <= 0) {
+        return response()->json(['message' => 'Não há mais vagas disponíveis para este evento.'], 400);
+    }
+
+    $amount = $event->preco;
+	
+    $qrcode = substr(md5(uniqid(mt_rand(), true)), 0, 63);
+    $pin = substr(md5(uniqid(mt_rand(), true)), 0, 6);
+    
+    //var_dump($pin);
+	//die();
+
+    $payment = new Payment([
+        'user_id' => $userId,
+        'event_id' => $eventId,
+        'amount' => $amount,
+        'method' => $metodo,
+        'reference' => '981017123',
+        'qrcode' => $qrcode,
+        'pin' => $pin
+    ]);
+
+    $event->vagas_disponiveis -= 1;
+    $event->save();
+
+    $payment->save();
+
+    //enviar email com pdf
+
+    $eventName = $event->nome;
+
+    $data = [
+            'title' => "Bilhete para {$eventName}",
+            'date' => date('d/m/Y'),
+            'name' => $eventName,
+            'qrcode' => $qrcode,
+            'pin'   => $pin
+        ];
+        
+        $pdf = PDF::loadView('myPDF', $data);
+        
+        // Salvar o PDF em um arquivo temporário
+    	$tempFolderPath = public_path('temp');
+        $pdfPath = $tempFolderPath . '/bilhete.pdf';
+        //$pdf->save($pdfPath);
+        
+        // Configurar o PHPMailer
+        $mail = new PHPMailer(true); 
+        
+        $mail->SMTPDebug = 3;
+        $mail->Debugoutput = 'html';
+        $mail->setLanguage('pt');
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = 'tsl';
+        $mail->Username = 'diogomagalhaesestagio@gmail.com';
+        $mail->Password = 'ouugxtvdqzpohffv';
+        $mail->Port = 465;
+        $mail->setFrom('diogomagalhaesestagio@gmail.com');
+        $mail->addReplyTo('rdiogomagalhaesestagio@gmail.com');
+        $mail->addAddress($userEmail, 'Utilizador');
+        $mail->isHTML(true);
+        $mail->Subject = 'Bilhete para ' . $eventName;
+        $mail->Body = 'Segue em anexo o Bilhete para a entrada no Evento ' . $eventName;
+        $mail->altBody = '';
+        
+        // Anexar o arquivo PDF
+        $mail->addAttachment($pdfPath, 'bilhete.pdf');
+
+        // Excluir o arquivo PDF temporário
+        //unlink($pdfPath);
+
+        if (!$mail->send()) {
+            return response()->json(['message' => 'Erro a mandar email, mas pagamento registado.'], 400);
+        } else {
+            return response()->json(['message' => 'Pagamento registado com sucesso.'], 200);
+        }
+        
+        //return response()->json(['message' => 'Pagamento registado com sucesso.'], 200);
+}
+
 
 }

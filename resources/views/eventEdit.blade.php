@@ -76,6 +76,7 @@
                         <a class="collapse-item" href="{{ route('events') }}">Eventos</a>
                         <a class="collapse-item" href="{{ route('users') }}">Utilizadores</a>
                         <a class="collapse-item" href="{{ route('paymentstable')}}">Pagamentos</a>
+                        <a class="collapse-item" href="{{ route('notifications') }}">Notificações</a>
                     </div>
                 </div>
             </li>
@@ -147,56 +148,6 @@
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Notificações
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">Abril 12, 2023</div>
-                                        <span class="font-weight-bold">Um novo Evento foi adicionado!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">Abril 4, 2023</div>
-                                        Foram adicionados 13€ á sua Conta!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">Março 22, 2023</div>
-                                        Alerta: Está com uma quantidade monetária baixa na sua Conta.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todas as Notificações</a>
-                            </div>
-                        </li>
 
 
                         <div class="topbar-divider d-none d-sm-block"></div>
