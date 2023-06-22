@@ -107,6 +107,7 @@
                         <a class="collapse-item" href="{{ route('events') }}">Eventos</a>
                         <a class="collapse-item" href="{{ route('users') }}">Utilizadores</a>
                         <a class="collapse-item" href="{{ route('paymentstable')}}">Pagamentos</a>
+                        <a class="collapse-item" href="{{ route('notifications')}}">Notificações</a>
                     </div>
                 </div>
             </li>
