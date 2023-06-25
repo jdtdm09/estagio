@@ -73,15 +73,15 @@ class PaymentController extends Controller
 
     $amount = $event->preco;
 
-    // Gera o código QR, o PIN e a referencia
+    // Gera o código QR Code e o PIN
     $qrcode = substr(md5(uniqid(mt_rand(), true)), 0, 63);
     $pin = substr(md5(uniqid(mt_rand(), true)), 0, 6);
-    $reference = substr(md5(uniqid(mt_rand(), true)), 0, 9);
 
+    // Verifica se o QR Code ou o PIN já extistem na base de dados
     $existingQrcode = Payment::where('qrcode', $qrcode)->first();
     $existingPin = Payment::where('pin', $pin)->first();
-    $existingReference = Payment::where('reference', $reference)->first();
 
+    // Caso já esista na base de dados, é criado um QR Code ou um PIN novo
     while ($existingQrcode) {
         $qrcode = substr(md5(uniqid(mt_rand(), true)), 0, 63); 
     }
@@ -90,9 +90,17 @@ class PaymentController extends Controller
         $pin = substr(md5(uniqid(mt_rand(), true)), 0, 6);
     }
 
+    // Gera uma referencia
+    $reference = substr(md5(uniqid(mt_rand(), true)), 0, 9);
+
+    // Verifica se a referencia já exista na base de dados
+    $existingReference = Payment::where('reference', $reference)->first();
+
+    // Caso já exista na base de dados, é criada uma referencia nova
     while ($existingReference) {
         $reference = substr(md5(uniqid(mt_rand(), true)), 0, 9);
     }
+
 
     $pagamento = new Payment([
         'user_id' => $userId,
