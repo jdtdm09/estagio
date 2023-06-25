@@ -91,16 +91,15 @@ class PaymentController extends Controller
     }
 
     // Gera uma referencia
-    $reference = substr(md5(uniqid(mt_rand(), true)), 0, 9);
+    $reference = substr(preg_replace("/[^0-9]/", "", md5(uniqid(mt_rand(), true))), 0, 9);
 
     // Verifica se a referencia já exista na base de dados
     $existingReference = Payment::where('reference', $reference)->first();
 
     // Caso já exista na base de dados, é criada uma referencia nova
     while ($existingReference) {
-        $reference = substr(md5(uniqid(mt_rand(), true)), 0, 9);
+        $reference = substr(preg_replace("/[^0-9]/", "", md5(uniqid(mt_rand(), true))), 0, 9);
     }
-
 
     $pagamento = new Payment([
         'user_id' => $userId,
