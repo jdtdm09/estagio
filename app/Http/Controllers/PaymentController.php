@@ -114,7 +114,7 @@ class PaymentController extends Controller
     // Decrementa o número de vagas disponíveis
     $event->vagas_disponiveis -= 1;
     $event->save();
-    // Salva o pagamento na base de dados
+    // Guarda o pagamento na base de dados
     $pagamento->save();
 
 
