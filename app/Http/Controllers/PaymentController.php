@@ -76,16 +76,30 @@ class PaymentController extends Controller
     // Gera o código QR e o PIN 
     $qrcode = substr(md5(uniqid(mt_rand(), true)), 0, 63);
     $pin = substr(md5(uniqid(mt_rand(), true)), 0, 6);
+    $reference = substr(md5(uniqid(mt_rand(), true)), 0, 9);
 
+    $existingQrcode = Payment::where('qrcode', $qrcode)->first();
+    $existingPin = Payment::where('pin', $pin)->first();
+    $existingReference = Payment::where('reference', $reference)->first();
 
+    while ($existingQrcode) {
+        $qrcode = substr(md5(uniqid(mt_rand(), true)), 0, 63); 
+    }
 
-    
+    while ($existingPin) {
+        $pin = substr(md5(uniqid(mt_rand(), true)), 0, 6);
+    }
+
+    while ($existingReference) {
+        $reference = substr(md5(uniqid(mt_rand(), true)), 0, 9);
+    }
+
     $pagamento = new Payment([
         'user_id' => $userId,
         'event_id' => $eventId,
         'amount' => $amount,
         'method' => $metodo,
-        'reference' => '981017123',
+        'reference' => $reference,
         'qrcode' => $qrcode,
         'pin' => $pin
     ]);
