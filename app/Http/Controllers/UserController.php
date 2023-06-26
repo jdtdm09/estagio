@@ -121,6 +121,37 @@ class UserController extends Controller
     }
 }
 
+    public function register(Request $request)
+{
+    $info = $request->only('nome', 'email', 'nTelemovel', 'dataNascimento', 'genero', 'password');
+
+    $existingUser = User::where('email', $info['email'])->first();
+    if ($existingUser) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Email already registered'
+        ], 401);
+    }
+
+    $user = User::create([
+        'name' => $info['nome'],
+        'email' => $info['email'],
+        'nTelemovel' => $info['nTelemovel'],
+        'dataNascimento' => $info['dataNascimento'],
+        'genero' => $info['genero'],
+        'password' => Hash::make($info['password']),
+        'cargo' => 0,
+    ]);
+
+    $user->save();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Account registered successfully',
+    ]);
+
+}
+
     public function sendEmail(Request $request) 
 {
     $userEmail = $request->input('email');
@@ -180,7 +211,7 @@ class UserController extends Controller
     
 }
 
-    public function findSpecific($userId)
+    public function show($userId)
 {
     $specificUser = User::where('id', $userId)->first();
     
