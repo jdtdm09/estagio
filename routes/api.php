@@ -25,6 +25,8 @@ Route::resource('events', EventController::class);
 
 Route::resource('users', UserController::class);
 
+Route::resource('notifications', NotificationController::class);
+
 Route::get('users/{userId}', [UserController::class, 'findSpecific']);
 
 Route::resource('payments', PaymentController::class);
@@ -36,3 +38,5 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/register', [UserController::class, 'register']);
 
 Route::post('payment/create', [PaymentController::class, 'createPayment']);
+
+Route::post('user/resetpassword', [UserController::class, 'updateMobilePassword']);

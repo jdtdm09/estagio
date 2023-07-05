@@ -207,8 +207,26 @@ class UserController extends Controller
         'password' => Hash::make($password)
     ])->save();
 
-    return redirect()->route('login')->with('mensagem', 'Password alterada com sucesso.');
-    
+    return redirect()->route('login')->with('mensagem', 'Password alterada com sucesso.'); 
+}
+
+    public function updateMobilePassword (Request $request) 
+{
+    $data = $request->json()->all();
+    $userId = $data['userId'];
+    $password = $data['password'];
+    $confirm_password = $data['confirm_password'];
+
+    if ($password != $confirm_password) {
+        return response()->json(['message' => 'As passwords não são iguais.'], 400);
+    }
+
+    $user = User::where('id', $userId)->first();
+    $user->forceFill([
+        'password' => Hash::make($password)
+    ])->save();
+
+    return response()->json(['message' => 'Password atualizada com sucesso.'], 200);
 }
 
     public function show($userId)

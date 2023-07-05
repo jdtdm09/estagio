@@ -191,23 +191,23 @@ class PaymentController extends Controller
         $pdf = PDF::loadView('myPDF', $data);
         
         // Salvar o PDF em um arquivo temporário
-    	$tempFolderPath = public_path('temp');
-        $pdfPath = $tempFolderPath . '/bilhete.pdf';
+    	$pdfPath = sys_get_temp_dir() . '/bilhete.pdf';
+        $pdf->save($pdfPath);
         //$pdf->save($pdfPath);
         
         // Configurar o PHPMailer
         $mail = new PHPMailer(true); 
         
-        $mail->SMTPDebug = 3;
+        $mail->SMTPDebug = 0;
         $mail->Debugoutput = 'html';
         $mail->setLanguage('pt');
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->SMTPSecure = 'tsl';
+        $mail->SMTPSecure = 'tls';
         $mail->Username = 'diogomagalhaesestagio@gmail.com';
         $mail->Password = 'ouugxtvdqzpohffv';
-        $mail->Port = 465;
+        $mail->Port = 587;
         $mail->setFrom('diogomagalhaesestagio@gmail.com');
         $mail->addReplyTo('rdiogomagalhaesestagio@gmail.com');
         $mail->addAddress($userEmail, 'Utilizador');

@@ -9,6 +9,18 @@ use Illuminate\Support\Facades\Redirect;
 
 class NotificationController extends Controller
 {
+
+    
+    public function index()
+{
+    $notifications = Notification::all();
+
+    return [
+        "status" => 1,
+        "data" => $notifications
+    ];
+}
+
     //
     public function create()
 {
