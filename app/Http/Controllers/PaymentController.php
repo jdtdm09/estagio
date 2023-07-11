@@ -231,5 +231,23 @@ class PaymentController extends Controller
         //return response()->json(['message' => 'Pagamento registado com sucesso.'], 200);
 }
 
+    public function getPayments($userId) 
+{
+    $payments = Payment::where('user_id', $userId)->get();
+
+    if ($payments) {
+        return [
+            "status" => 1,
+            "data" => $payments
+        ];
+    } else {
+        return [
+            "status" => 2,
+            "message" => "Não existe"
+        ];
+    }
+
+}
+
 
 }

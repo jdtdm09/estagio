@@ -51,7 +51,7 @@ class PDFController extends Controller
         
         $pdf = PDF::loadView('myPDF', $data);
         
-        // Salvar o PDF em um arquivo temporário
+        // Guardar o PDF num ficheiro temporário
         $pdfPath = sys_get_temp_dir() . '/bilhete.pdf';
         $pdf->save($pdfPath);
         

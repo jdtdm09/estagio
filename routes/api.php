@@ -40,3 +40,5 @@ Route::post('/register', [UserController::class, 'register']);
 Route::post('payment/create', [PaymentController::class, 'createPayment']);
 
 Route::post('user/resetpassword', [UserController::class, 'updateMobilePassword']);
+
+Route::get('paymentsuser/get/{userId}', [PaymentController::class, 'getPayments']);
