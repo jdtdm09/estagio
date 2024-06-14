@@ -10,3 +10,11 @@ que participaram e consultar os pagamentos efetuados.
 A aplicação tem dois tipos de utilizadores: utilizadores normais e administradores.
 Cada tipo de utilizador tem áreas de acesso diferentes.
 Este projeto foi desenvolvido exclusivamente para a web e foi complementado por uma aplicação móvel desenvolvida por um estagiário do mesmo curso.
+
+
+# Demonstração do Projeto
+
+
+https://github.com/jdtdm09/estagio/assets/90331320/47831be7-2c30-4c99-a55e-f4abd44ecd97
+
+
